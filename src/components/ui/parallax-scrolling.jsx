@@ -13,10 +13,10 @@ export function ParallaxComponent({ onOpenICP }) {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // 1. Animação de saída da foto do Hero
+      // 1. Animação de saída da foto do Hero com escala mantida
       gsap.to('[data-parallax-photo]', {
         yPercent: isMobile ? 5 : 10,
-        scale: isMobile ? 0.95 : 0.96,
+        scale: isMobile ? 0.95 : 0.86,
         opacity: 0.5,
         ease: 'none',
         scrollTrigger: {
@@ -30,7 +30,7 @@ export function ParallaxComponent({ onOpenICP }) {
       // 2. Animação de saída do título CONVERTE+
       gsap.to('[data-hero-title]', {
         yPercent: -20,
-        scale: 1.1,
+        scale: 1.08,
         opacity: 0,
         ease: 'none',
         scrollTrigger: {
@@ -66,17 +66,17 @@ export function ParallaxComponent({ onOpenICP }) {
     <div ref={containerRef} className="relative w-full bg-[#080c19]">
       
       {/* ========================================================= */}
-      {/* 1. HERO SCREEN: FOTO COM ZOOM REDUZIDO (ZERO CORTES NO DESKTOP) */}
+      {/* 1. HERO SCREEN: FOTO COM 10% MENOS ZOOM NO DESKTOP        */}
       {/* ========================================================= */}
       <section data-hero-screen className="relative w-full h-screen flex flex-col items-center justify-between overflow-hidden bg-[#080c19] pt-16 sm:pt-20">
         
-        {/* Foto de Fundo com ancoragem no topo 0% para tirar o zoom e exibir a cabeça inteira */}
-        <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+        {/* Foto de Fundo com escala de 90% (10% a menos de zoom no desktop) */}
+        <div className="absolute inset-0 w-full h-full z-0 overflow-hidden flex items-center justify-center">
           <img 
             data-parallax-photo
             src={heroPhoto} 
             alt="Fundador Converte+ na Poltrona" 
-            className="w-full h-full object-cover [object-position:center_22%] sm:[object-position:center_15%] md:[object-position:center_4%] lg:[object-position:center_0%] filter contrast-[1.14] brightness-[0.96] saturate-[1.08] [image-rendering:-webkit-optimize-contrast] origin-top"
+            className="w-full h-full object-cover [object-position:center_22%] sm:[object-position:center_24%] md:[object-position:center_20%] md:scale-[0.90] lg:scale-[0.88] transform-gpu filter contrast-[1.14] brightness-[0.96] saturate-[1.08] [image-rendering:-webkit-optimize-contrast] origin-center"
           />
           
           {/* Sombreamento para transição suave */}
@@ -87,8 +87,8 @@ export function ParallaxComponent({ onOpenICP }) {
         {/* Spacer top */}
         <div className="h-14 sm:h-20"></div>
 
-        {/* TÍTULO CONVERTE+ POSICIONADO NO COLO DA FOTO */}
-        <div data-hero-title className="relative z-10 text-center px-4 max-w-7xl mx-auto flex flex-col items-center my-auto md:translate-y-12 lg:translate-y-16 origin-center">
+        {/* TÍTULO CONVERTE+ DESCIDO PARA A LINHA DO COLO DA POLTRONA */}
+        <div data-hero-title className="relative z-10 text-center px-4 max-w-7xl mx-auto flex flex-col items-center my-auto md:translate-y-20 lg:translate-y-24 origin-center">
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white uppercase tracking-tight drop-shadow-[0_12px_35px_rgba(0,0,0,0.95)] select-none">
             CONVERTE<span className="text-orange-500">+</span>
           </h1>
