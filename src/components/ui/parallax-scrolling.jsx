@@ -64,13 +64,13 @@ export function ParallaxComponent({ onOpenICP }) {
       {/* ========================================================= */}
       <div data-hero-pinned-wrapper className="relative w-full h-screen overflow-hidden bg-[#080c19]">
         
-        {/* FOTO DO HERO FULL BLEED COM AJUSTE DE +2% ZOOM OUT E FOTO LEVEMENTE SUBIDA */}
+        {/* FOTO DO HERO (ENQUADRAMENTO IDÊNTICO AO MOBILE EM TODAS AS TELAS) */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <img 
             data-parallax-photo
             src={heroPhoto} 
             alt="Fundador Converte+ na Poltrona" 
-            className="w-full h-full object-cover [object-position:center_20%] sm:[object-position:center_22%] md:[object-position:center_14%] lg:[object-position:center_12%] md:scale-[0.98] transform-gpu filter contrast-[1.14] brightness-[0.96] saturate-[1.08] [image-rendering:-webkit-optimize-contrast] origin-center"
+            className="w-full h-full object-cover [object-position:center_22%] filter contrast-[1.14] brightness-[0.96] saturate-[1.08] [image-rendering:-webkit-optimize-contrast] origin-center"
           />
           
           {/* Sombreamento para transição suave */}
@@ -78,11 +78,11 @@ export function ParallaxComponent({ onOpenICP }) {
           <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#080c19]/45" />
         </div>
 
-        {/* TÍTULO CONVERTE+ (DENTRO DA MESMA TELA PINNADA) */}
+        {/* TÍTULO CONVERTE+ (IDÊNTICO AO MOBILE) */}
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-between pt-20 pb-8 pointer-events-none">
           <div className="h-10"></div>
 
-          <div data-hero-title className="text-center px-4 max-w-7xl mx-auto flex flex-col items-center md:translate-y-16 lg:translate-y-20 origin-center pointer-events-auto">
+          <div data-hero-title className="text-center px-4 max-w-7xl mx-auto flex flex-col items-center origin-center pointer-events-auto">
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white uppercase tracking-tight drop-shadow-[0_12px_35px_rgba(0,0,0,0.95)] select-none">
               CONVERTE<span className="text-orange-500">+</span>
             </h1>
