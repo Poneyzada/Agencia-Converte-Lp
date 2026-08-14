@@ -13,50 +13,44 @@ export function ParallaxComponent({ onOpenICP }) {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // 1. Animação de saída da foto do Hero com escala mantida
-      gsap.to('[data-parallax-photo]', {
-        yPercent: isMobile ? 5 : 10,
-        scale: isMobile ? 0.95 : 0.86,
-        opacity: 0.5,
-        ease: 'none',
+      // TIMELINE DE SCROLL PINNADO (CONECTA A FOTO DIRETO AO '+' NUM ÚNICO SCROLL FLUIDO)
+      const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: '[data-hero-screen]',
+          trigger: '[data-hero-pinned-wrapper]',
           start: 'top top',
-          end: 'bottom top',
-          scrub: true
+          end: '+=120%', // Distância de scroll perfeita e amaciada
+          scrub: 0.8,    // Acompanha a velocidade exata do scroll do usuário
+          pin: true,     // Trava a tela para fazer a transição conectada
+          anticipatePin: 1
         }
       });
 
-      // 2. Animação de saída do título CONVERTE+
-      gsap.to('[data-hero-title]', {
-        yPercent: -20,
-        scale: 1.08,
+      // 1. A foto e o título encolhem e desvanecem suavemente enquanto você rola
+      tl.to('[data-parallax-photo]', {
+        scale: isMobile ? 0.80 : 0.75,
+        opacity: 0.15,
+        duration: 1,
+        ease: 'power1.inOut'
+      }, 0)
+      .to('[data-hero-title]', {
+        scale: 0.7,
         opacity: 0,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '[data-hero-screen]',
-          start: 'top top',
-          end: 'bottom 20%',
-          scrub: true
-        }
-      });
+        y: -60,
+        duration: 0.8,
+        ease: 'power1.inOut'
+      }, 0)
 
-      // 3. Transição de entrada do símbolo '+'
-      gsap.fromTo('[data-plus-symbol]',
-        { scale: 0.5, opacity: 0, y: 30 },
+      // 2. O símbolo '+' surge no centro exato da tela se conectando à foto
+      .fromTo('[data-plus-symbol]',
+        { scale: 0.25, opacity: 0, y: 40 },
         {
           scale: 1,
           opacity: 1,
           y: 0,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '[data-plus-screen]',
-            start: 'top 85%',
-            end: 'center center',
-            scrub: 0.8
-          }
-        }
-      );
+          duration: 1,
+          ease: 'power2.out'
+        }, 0.3);
+
     }, containerRef);
 
     return () => ctx.revert();
@@ -66,11 +60,11 @@ export function ParallaxComponent({ onOpenICP }) {
     <div ref={containerRef} className="relative w-full bg-[#080c19]">
       
       {/* ========================================================= */}
-      {/* 1. HERO SCREEN: FOTO COM 10% MENOS ZOOM NO DESKTOP        */}
+      {/* SEÇÃO WRAPPER PINNADA DO HERO AO SÍMBOLO DE "+"           */}
       {/* ========================================================= */}
-      <section data-hero-screen className="relative w-full h-screen flex flex-col items-center justify-between overflow-hidden bg-[#080c19] pt-16 sm:pt-20">
+      <div data-hero-pinned-wrapper className="relative w-full h-screen overflow-hidden bg-[#080c19]">
         
-        {/* Foto de Fundo com escala de 90% (10% a menos de zoom no desktop) */}
+        {/* FOTO DO HERO DE FUNDO */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden flex items-center justify-center">
           <img 
             data-parallax-photo
@@ -79,55 +73,43 @@ export function ParallaxComponent({ onOpenICP }) {
             className="w-full h-full object-cover [object-position:center_22%] sm:[object-position:center_24%] md:[object-position:center_20%] md:scale-[0.90] lg:scale-[0.88] transform-gpu filter contrast-[1.14] brightness-[0.96] saturate-[1.08] [image-rendering:-webkit-optimize-contrast] origin-center"
           />
           
-          {/* Sombreamento para transição suave */}
+          {/* Sombreamento para transição */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#080c19]/40 via-transparent to-[#080c19]" />
           <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#080c19]/45" />
         </div>
 
-        {/* Spacer top */}
-        <div className="h-14 sm:h-20"></div>
+        {/* TÍTULO CONVERTE+ (DENTRO DA MESMA TELA PINNADA) */}
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-between pt-20 pb-8 pointer-events-none">
+          <div className="h-10"></div>
 
-        {/* TÍTULO CONVERTE+ DESCIDO PARA A LINHA DO COLO DA POLTRONA */}
-        <div data-hero-title className="relative z-10 text-center px-4 max-w-7xl mx-auto flex flex-col items-center my-auto md:translate-y-20 lg:translate-y-24 origin-center">
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white uppercase tracking-tight drop-shadow-[0_12px_35px_rgba(0,0,0,0.95)] select-none">
-            CONVERTE<span className="text-orange-500">+</span>
-          </h1>
-        </div>
+          <div data-hero-title className="text-center px-4 max-w-7xl mx-auto flex flex-col items-center md:translate-y-20 lg:translate-y-24 origin-center pointer-events-auto">
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white uppercase tracking-tight drop-shadow-[0_12px_35px_rgba(0,0,0,0.95)] select-none">
+              CONVERTE<span className="text-orange-500">+</span>
+            </h1>
+          </div>
 
-        {/* Botão de Scroll no Rodapé do Hero */}
-        <div className="relative z-10 pb-6 sm:pb-8">
-          <div 
-            className="flex flex-col items-center gap-1 text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest text-gray-200 animate-bounce cursor-pointer bg-black/60 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border border-white/15 backdrop-blur-md hover:bg-black/80 transition-colors shadow-2xl" 
-            onClick={() => {
-              const el = document.getElementById('secao-plus');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
-          >
-            <span>Role para continuar</span>
-            <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500" />
+          <div className="pointer-events-auto">
+            <div 
+              className="flex flex-col items-center gap-1 text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest text-gray-200 animate-bounce cursor-pointer bg-black/60 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border border-white/15 backdrop-blur-md hover:bg-black/80 transition-colors shadow-2xl" 
+            >
+              <span>Role para continuar</span>
+              <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500" />
+            </div>
           </div>
         </div>
 
-      </section>
-
-
-      {/* ========================================================= */}
-      {/* 2. TRANSITION SCREEN: TELA COMPACTA DO "+" NO MOBILE       */}
-      {/* ========================================================= */}
-      <section 
-        id="secao-plus" 
-        data-plus-screen 
-        className="relative w-full min-h-[45vh] sm:min-h-screen flex items-center justify-center bg-[#080c19] overflow-hidden py-12 sm:py-0"
-      >
-        {/* Símbolo "+" Gigante em Laranja Elétrico */}
-        <div 
-          data-plus-symbol
-          onClick={onOpenICP}
-          className="cursor-pointer select-none text-orange-500 font-black text-7xl sm:text-[16rem] lg:text-[22rem] leading-none drop-shadow-[0_0_70px_rgba(255,88,35,0.7)] hover:scale-110 transition-transform duration-300 animate-float"
-        >
-          +
+        {/* SÍMBOLO GIGANTE "+" (DENTRO DA MESMA TELA PINNADA E REVELADO NO SCROLL) */}
+        <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
+          <div 
+            data-plus-symbol
+            onClick={onOpenICP}
+            className="cursor-pointer pointer-events-auto select-none text-orange-500 font-black text-8xl sm:text-[16rem] lg:text-[22rem] leading-none drop-shadow-[0_0_80px_rgba(255,88,35,0.8)] hover:scale-110 transition-transform duration-300 animate-float"
+          >
+            +
+          </div>
         </div>
-      </section>
+
+      </div>
 
 
       {/* ========================================================= */}
