@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ShieldCheck, ArrowRight, Target, TrendingUp, Sparkles } from 'lucide-react';
+import { ShieldCheck, ArrowRight, Target, TrendingUp, Sparkles, Plus } from 'lucide-react';
 import { FaInstagram, FaGoogle, FaWhatsapp, FaFacebook } from 'react-icons/fa';
 import { SiGoogleanalytics, SiMeta } from 'react-icons/si';
 
@@ -30,7 +30,7 @@ export default function NoRiskSection({ onOpenICP }) {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Entrada e saída suaves durante a rolagem (suave em mobile e desktop)
+      // Entrada e saída suaves durante a rolagem
       if (orbitRef.current) {
         gsap.fromTo(orbitRef.current,
           { x: 120, opacity: 0.1, scale: 0.8 },
@@ -60,7 +60,7 @@ export default function NoRiskSection({ onOpenICP }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
-          {/* Esquerda: Copy, Badge e Botão (Mobile First) */}
+          {/* Esquerda: Copy, Badge e Botão */}
           <div className="lg:col-span-6 space-y-6 text-center lg:text-left z-10">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-semibold uppercase tracking-wider">
               <ShieldCheck className="w-4 h-4" />
@@ -93,19 +93,19 @@ export default function NoRiskSection({ onOpenICP }) {
         </div>
       </div>
 
-      {/* DIREITA / MOBILE: A Rodinha com entrada suave e encaixe Mobile First */}
+      {/* DIREITA / MOBILE: A Rodinha com o '+' 100% Centralizado Geometricamente */}
       <div className="relative mt-8 lg:mt-0 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 w-full lg:w-1/2 h-72 sm:h-96 lg:h-[34rem] flex items-center justify-center lg:justify-end overflow-hidden pointer-events-none">
         <div 
           ref={orbitRef}
           className="relative w-[22rem] h-[22rem] sm:w-[32rem] sm:h-[32rem] lg:w-[48rem] lg:h-[48rem] translate-x-0 lg:translate-x-[25%] xl:translate-x-[20%] flex items-center justify-center pointer-events-none"
         >
           
-          {/* Centro com o Ícone '+' da Converte+ */}
+          {/* Centro com o Ícone '+' da Converte+ (SVG com alinhamento milimétrico no meio exato) */}
           <div className="w-16 h-16 sm:w-22 sm:h-22 rounded-full bg-[#0e1529] border-2 border-orange-500 shadow-2xl shadow-orange-500/50 flex items-center justify-center z-20 animate-pulse-glow pointer-events-auto cursor-pointer" onClick={onOpenICP}>
-            <span className="font-black text-3xl sm:text-4xl text-orange-500">+</span>
+            <Plus className="w-8 h-8 sm:w-11 sm:h-11 text-orange-500 stroke-[3.5]" />
           </div>
 
-          {/* Órbitas Giratórias (Ajustadas para Celulares e Monitores) */}
+          {/* Órbitas Giratórias */}
           {[...Array(orbitCount)].map((_, orbitIdx) => {
             const size = `${8 + orbitGap * (orbitIdx + 1)}rem`;
             const angleStep = (2 * Math.PI) / iconsPerOrbit;
@@ -131,7 +131,7 @@ export default function NoRiskSection({ onOpenICP }) {
                     return (
                       <div
                         key={iconIdx}
-                        className="absolute bg-[#0e1529]/95 backdrop-blur-md border border-white/10 rounded-full p-2 sm:p-3 shadow-xl pointer-events-auto"
+                        className="absolute bg-[#0e1529]/95 backdrop-blur-md border border-white/10 rounded-full p-2 sm:p-3 shadow-xl pointer-events-auto flex items-center justify-center"
                         style={{
                           left: `${x}%`,
                           top: `${y}%`,

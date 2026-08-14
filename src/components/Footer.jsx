@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Shield, Lock } from 'lucide-react';
+import { ArrowUp, Shield, Lock, Plus } from 'lucide-react';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -12,12 +12,12 @@ export default function Footer() {
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
           
-          {/* Brand Col - Clean Logo Icon '+' + Text 'Converte+' */}
+          {/* Brand Col - Clean Logo Icon '+' SVG + Text 'Converte+' */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-500 p-[1px]">
-                <div className="w-full h-full bg-[#0e1529] rounded-[10px] flex items-center justify-center font-black text-xl text-orange-500">
-                  +
+                <div className="w-full h-full bg-[#0e1529] rounded-[10px] flex items-center justify-center">
+                  <Plus className="w-5 h-5 text-orange-500 stroke-[3]" />
                 </div>
               </div>
               <span className="font-extrabold text-xl text-white">
@@ -41,7 +41,6 @@ export default function Footer() {
             <ul className="space-y-2 text-xs">
               <li><a href="#metodo" className="hover:text-orange-400 transition-colors">Método Converte+</a></li>
               <li><a href="#para-voce" className="hover:text-orange-400 transition-colors">Para Quem É</a></li>
-              <li><a href="#caminho" className="hover:text-orange-400 transition-colors">Caminho Claro</a></li>
               <li><a href="#planos" className="hover:text-orange-400 transition-colors">Planos</a></li>
               <li><a href="#equipe" className="hover:text-orange-400 transition-colors">Quem Somos</a></li>
               <li><a href="#faq" className="hover:text-orange-400 transition-colors">Dúvidas Frequentes</a></li>

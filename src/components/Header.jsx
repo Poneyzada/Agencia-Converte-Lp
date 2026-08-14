@@ -1,134 +1,112 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Sparkles, Menu, X } from 'lucide-react';
-import { siteConfig } from '../config/siteConfig';
+import { Menu, X, Sparkles, ArrowRight, Plus } from 'lucide-react';
 
 export default function Header({ onOpenICP }) {
-  const [scrolled, setScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 40);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id) => {
-    setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const navLinks = [
+    { name: 'Método', href: '#metodo' },
+    { name: 'Para Quem É', href: '#para-voce' },
+    { name: 'Planos', href: '#planos' },
+    { name: 'Quem Somos', href: '#equipe' },
+    { name: 'FAQ', href: '#faq' },
+  ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-      scrolled 
-        ? 'py-3 bg-[#080c19]/90 backdrop-blur-xl border-b border-white/10 shadow-2xl shadow-black/40' 
-        : 'py-5 bg-transparent'
-    }`}>
+    <header
+      className={`fixed top-12 left-0 right-0 z-40 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-[#080c19]/90 backdrop-blur-md py-3 border-b border-white/10 shadow-2xl'
+          : 'bg-transparent py-5'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Clean Logo - Icon with '+' and Single Text 'Converte+' */}
+          {/* Brand Logo - Pixel-perfect SVG Plus centering */}
           <a href="#" className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-orange-500 via-amber-500 to-orange-600 p-[1px] shadow-lg shadow-orange-500/20 group-hover:shadow-orange-500/40 transition-all duration-300">
-              <div className="w-full h-full bg-[#0e1529] rounded-[10px] flex items-center justify-center font-black text-xl text-orange-500">
-                +
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-500 p-[1px] shadow-lg shadow-orange-500/20 group-hover:scale-105 transition-transform">
+              <div className="w-full h-full bg-[#0e1529] rounded-[10px] flex items-center justify-center">
+                <Plus className="w-5 h-5 text-orange-500 stroke-[3]" />
               </div>
             </div>
-            <div className="flex flex-col">
-              <span className="font-extrabold text-xl tracking-tight text-white flex items-center">
-                Converte<span className="text-orange-500">+</span>
-              </span>
-              <span className="text-[10px] tracking-widest uppercase font-medium text-gray-400 -mt-1">
-                Tráfego & Branding
-              </span>
-            </div>
+            <span className="font-extrabold text-xl sm:text-2xl text-white tracking-tight">
+              Converte<span className="text-orange-500">+</span>
+            </span>
           </a>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
-            <button 
-              onClick={() => scrollToSection('metodo')}
-              className="hover:text-orange-400 transition-colors cursor-pointer"
-            >
-              Método
-            </button>
-            <button 
-              onClick={() => scrollToSection('para-voce')}
-              className="hover:text-orange-400 transition-colors cursor-pointer"
-            >
-              Para Quem É
-            </button>
-            <button 
-              onClick={() => scrollToSection('caminho')}
-              className="hover:text-orange-400 transition-colors cursor-pointer"
-            >
-              Caminho
-            </button>
-            <button 
-              onClick={() => scrollToSection('planos')}
-              className="hover:text-orange-400 transition-colors cursor-pointer"
-            >
-              Planos
-            </button>
-            <button 
-              onClick={() => scrollToSection('equipe')}
-              className="hover:text-orange-400 transition-colors cursor-pointer"
-            >
-              Quem Somos
-            </button>
-            <button 
-              onClick={() => scrollToSection('faq')}
-              className="hover:text-orange-400 transition-colors cursor-pointer"
-            >
-              FAQ
-            </button>
+          {/* Desktop Nav Links */}
+          <nav className="hidden md:flex items-center gap-7">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-xs font-bold text-gray-200 hover:text-orange-400 transition-colors uppercase tracking-wider"
+              >
+                {link.name}
+              </a>
+            ))}
           </nav>
 
-          {/* Header Action Button */}
-          <div className="hidden md:flex items-center gap-4">
-            <button 
+          {/* Right Action Button */}
+          <div className="hidden md:flex items-center gap-3">
+            <button
               onClick={onOpenICP}
-              className="btn-orange px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 cursor-pointer shadow-lg shadow-orange-500/20"
+              className="btn-orange px-5 py-2.5 rounded-xl font-bold text-xs shadow-lg shadow-orange-500/20 flex items-center gap-2 cursor-pointer"
             >
-              <Sparkles className="w-4 h-4 text-orange-200" />
-              <span>Fazer Diagnóstico Grátis</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Diagnóstico Grátis</span>
             </button>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <button 
+          {/* Mobile Hamburger Toggle */}
+          <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-white"
+            className="md:hidden p-2 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors cursor-pointer"
+            aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
+
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#0e1529]/95 backdrop-blur-xl border-b border-white/10 px-4 pt-4 pb-6 mt-3 animate-in slide-in-from-top duration-200">
-          <div className="flex flex-col gap-4 text-base font-medium text-gray-200">
-            <button onClick={() => scrollToSection('metodo')} className="text-left py-2 border-b border-white/5">Método</button>
-            <button onClick={() => scrollToSection('para-voce')} className="text-left py-2 border-b border-white/5">Para Quem É</button>
-            <button onClick={() => scrollToSection('caminho')} className="text-left py-2 border-b border-white/5">Caminho Claro</button>
-            <button onClick={() => scrollToSection('planos')} className="text-left py-2 border-b border-white/5">Planos</button>
-            <button onClick={() => scrollToSection('equipe')} className="text-left py-2 border-b border-white/5">Quem Somos</button>
-            <button onClick={() => scrollToSection('faq')} className="text-left py-2 border-b border-white/5">FAQ</button>
-            
-            <button 
-              onClick={() => { setMobileMenuOpen(false); onOpenICP(); }}
-              className="mt-2 w-full py-3 rounded-xl btn-orange text-white font-bold flex items-center justify-center gap-2"
-            >
-              <Sparkles className="w-4 h-4" />
-              <span>Fazer Diagnóstico Grátis</span>
-            </button>
-          </div>
+        <div className="md:hidden bg-[#0a0f1f]/95 backdrop-blur-xl border-b border-white/10 px-4 pt-4 pb-6 space-y-4 animate-in slide-in-from-top duration-200">
+          <nav className="flex flex-col space-y-3">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-sm font-semibold text-gray-200 hover:text-orange-400 py-2 border-b border-white/5 transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+          
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onOpenICP();
+            }}
+            className="btn-orange w-full py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20"
+          >
+            <Sparkles className="w-4 h-4" />
+            <span>Fazer Diagnóstico Grátis</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
         </div>
       )}
     </header>
