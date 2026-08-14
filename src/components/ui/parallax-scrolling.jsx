@@ -64,21 +64,21 @@ export function ParallaxComponent({ onOpenICP }) {
       {/* ========================================================= */}
       <div data-hero-pinned-wrapper className="relative w-full h-screen overflow-hidden bg-[#080c19]">
         
-        {/* FOTO DO HERO (MOBILE 100% INTACTO E LUMINOSO | DESKTOP COM SUAVE ESCURECIMENTO) */}
+        {/* FOTO ORIGINAL ORIGINALMENTE EM 153.5KB RESTAURADA EM QUALIDADE MÁXIMA */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <img 
             data-parallax-photo
             src={heroPhoto} 
             alt="Fundador Converte+ na Poltrona" 
-            className="w-full h-full object-cover [object-position:center_22%] filter brightness-100 md:brightness-[0.88] origin-center"
+            className="w-full h-full object-cover [object-position:center_22%] filter contrast-105 brightness-95 origin-center"
           />
           
-          {/* Sombreamento para transição suave */}
+          {/* Sombreamento degradê original que esfumaça perfeitamente para o fundo escuro */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#080c19]/40 via-transparent to-[#080c19]" />
-          <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#080c19]/45" />
+          <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#080c19]/50" />
         </div>
 
-        {/* TÍTULO CONVERTE+ (IDÊNTICO AO MOBILE) */}
+        {/* TÍTULO CONVERTE+ */}
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-between pt-20 pb-8 pointer-events-none">
           <div className="h-10"></div>
 
