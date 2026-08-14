@@ -39,7 +39,8 @@ export default function AdminCRMModal({ isOpen, onClose }) {
   const [copiedSuccess, setCopiedSuccess] = useState(false);
   const [leadNoteInput, setLeadNoteInput] = useState('');
 
-  const CORRECT_PASSWORD = 'converte123'; // Only the agency owner knows this password
+  // Official Admin Passwords for agency owners
+  const VALID_PASSWORDS = ['converteMAIS123', 'coverteMAIS123'];
 
   useEffect(() => {
     const loadLeads = () => {
@@ -58,7 +59,7 @@ export default function AdminCRMModal({ isOpen, onClose }) {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (password === CORRECT_PASSWORD) {
+    if (VALID_PASSWORDS.includes(password.trim())) {
       setIsAuthenticated(true);
       setAuthError('');
     } else {
@@ -231,7 +232,7 @@ export default function AdminCRMModal({ isOpen, onClose }) {
         {/* CONTENT BODY */}
         <div className="p-6 overflow-y-auto flex-grow space-y-6">
           
-          {/* PASSWORD AUTHENTICATION SCREEN (Sem nenhuma dica de senha) */}
+          {/* PASSWORD AUTHENTICATION SCREEN */}
           {!isAuthenticated ? (
             <div className="max-w-md mx-auto py-16 text-center space-y-6">
               
