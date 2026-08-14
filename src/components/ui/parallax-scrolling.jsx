@@ -64,13 +64,13 @@ export function ParallaxComponent({ onOpenICP }) {
       {/* ========================================================= */}
       <div data-hero-pinned-wrapper className="relative w-full h-screen overflow-hidden bg-[#080c19]">
         
-        {/* FOTO DO HERO (ILUMINAÇÃO SUAVE E NATURAL SEM ESTOURAR) */}
+        {/* FOTO DO HERO (ILUMINAÇÃO E CORES 100% NATURAIS SEM FILTROS) */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <img 
             data-parallax-photo
             src={heroPhoto} 
             alt="Fundador Converte+ na Poltrona" 
-            className="w-full h-full object-cover [object-position:center_22%] filter brightness-[0.96] saturate-[1.02] origin-center"
+            className="w-full h-full object-cover [object-position:center_22%] origin-center"
           />
           
           {/* Sombreamento para transição suave */}
@@ -127,7 +127,7 @@ export function ParallaxComponent({ onOpenICP }) {
 
           {/* Texto Explicativo da Copy */}
           <p className="text-sm sm:text-lg lg:text-xl text-gray-300 font-normal leading-relaxed mb-8 sm:mb-10 max-w-3xl">
-            Você já tem um bom produto e clientes que confiam em você. A gente estrutura sua presença digital e traz as pessoas certas, de forma previsível, para o seu site e o seu WhatsApp — para você parar de torcer pela indicação e passar a saber como vai fechar o mês.
+            Você já tem um bom produto e clientes que confiam em você. A gente estrutura sua presença digital e traz as pessoas certas, de forma previsível, para o seu site e o seu WhatsApp — para você parar de torcer pela indicação earning passar a saber como vai fechar o mês.
           </p>
 
           {/* Botões de Ação */}
