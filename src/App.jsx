@@ -4,7 +4,6 @@ import Header from './components/Header';
 import { ParallaxComponent } from './components/ui/parallax-scrolling';
 import MethodSection from './components/MethodSection';
 import FitSection from './components/FitSection';
-import RoadmapSection from './components/RoadmapSection';
 import CTABannerSection from './components/CTABannerSection';
 import NoRiskSection from './components/NoRiskSection';
 import PlansSection from './components/PlansSection';
@@ -36,22 +35,19 @@ export default function App() {
 
       {/* Page Sections */}
       <main className="flex-grow">
-        {/* Parallax Hero with GSAP, Lenis, and signature '+' logo icon */}
+        {/* Parallax Hero with GSAP and signature '+' logo icon */}
         <ParallaxComponent onOpenICP={handleOpenICP} />
 
-        {/* 4 Pilares do Método */}
+        {/* 4 Pilares do Método (Única seção compacta de 4 passos) */}
         <MethodSection onOpenICP={handleOpenICP} />
 
         {/* Isto é pra você? (Fit vs Not Fit) */}
         <FitSection onOpenICP={handleOpenICP} />
 
-        {/* Um caminho claro até a sua previsibilidade */}
-        <RoadmapSection onOpenICP={handleOpenICP} />
-
         {/* CTA Banner: Chega de terminar o mês... */}
         <CTABannerSection onOpenICP={handleOpenICP} />
 
-        {/* O primeiro passo é sem risco */}
+        {/* O primeiro passo é sem risco (Com a Rodinha Órbita 3D) */}
         <NoRiskSection onOpenICP={handleOpenICP} />
 
         {/* Um plano para cada momento do seu negócio */}
@@ -60,22 +56,23 @@ export default function App() {
         {/* Feito para marcas que querem parar de viver de indicação */}
         <StatsSection />
 
-        {/* Quem Conduz Sua Estratégia (Co-fundadores) */}
+        {/* Quem está por trás da Converte+ */}
         <FoundersSection />
 
         {/* Dúvidas Frequentes */}
-        <FAQSection onOpenICP={handleOpenICP} />
+        <FAQSection />
       </main>
 
       {/* Footer */}
       <Footer />
 
-      {/* Interactive ICP 5-Question Modal Popup */}
-      <ICPModal 
-        isOpen={icpModalOpen} 
+      {/* ICP Popup Form Modal */}
+      <ICPModal
+        isOpen={icpModalOpen}
         onClose={handleCloseICP}
-        whatsappNumber={whatsappNumber} 
+        whatsappNumber={whatsappNumber}
       />
+
     </div>
   );
 }
