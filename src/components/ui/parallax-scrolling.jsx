@@ -13,9 +13,11 @@ export function ParallaxComponent({ onOpenICP }) {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Leve efeito parallax na foto do hero
+      // 1. Animação de saída da foto do Hero (parece que mexeu e encolheu suavemente)
       gsap.to('[data-parallax-photo]', {
-        yPercent: isMobile ? 5 : 10,
+        yPercent: isMobile ? 6 : 14,
+        scale: 0.94,
+        opacity: 0.5,
         ease: 'none',
         scrollTrigger: {
           trigger: '[data-hero-screen]',
@@ -25,9 +27,23 @@ export function ParallaxComponent({ onOpenICP }) {
         }
       });
 
-      // Transição amaciada do símbolo '+'
+      // 2. Animação de saída do título CONVERTE+ (escala e desvanece ao rolar)
+      gsap.to('[data-hero-title]', {
+        yPercent: -25,
+        scale: 1.12,
+        opacity: 0,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '[data-hero-screen]',
+          start: 'top top',
+          end: 'bottom 20%',
+          scrub: true
+        }
+      });
+
+      // 3. Transição de entrada amaciada do símbolo '+' (entra depois que o Hero mexe)
       gsap.fromTo('[data-plus-symbol]',
-        { scale: 0.55, opacity: 0.25, y: 30 },
+        { scale: 0.4, opacity: 0, y: 60 },
         {
           scale: 1,
           opacity: 1,
@@ -35,9 +51,9 @@ export function ParallaxComponent({ onOpenICP }) {
           ease: 'power2.out',
           scrollTrigger: {
             trigger: '[data-plus-screen]',
-            start: 'top 85%',
+            start: 'top 80%',
             end: 'center center',
-            scrub: 0.8
+            scrub: 0.9
           }
         }
       );
@@ -50,20 +66,20 @@ export function ParallaxComponent({ onOpenICP }) {
     <div ref={containerRef} className="relative w-full bg-[#080c19]">
       
       {/* ========================================================= */}
-      {/* 1. HERO SCREEN: FOTO FULL BLEED HD COM NITIDEZ OTIMIZADA  */}
+      {/* 1. HERO SCREEN: FOTO E TÍTULO COM ANIMAÇÃO DE MOVIMENTO   */}
       {/* ========================================================= */}
       <section data-hero-screen className="relative w-full h-screen flex flex-col items-center justify-between overflow-hidden bg-[#080c19] pt-16 sm:pt-12">
         
-        {/* Foto de Fundo Edge-to-Edge com Filtro de Nitidez HD */}
+        {/* Foto de Fundo Edge-to-Edge com Filtro HD e movimento de rolagem */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <img 
             data-parallax-photo
             src={heroPhoto} 
             alt="Fundador Converte+ na Poltrona" 
-            className="w-full h-full object-cover [object-position:center_22%] sm:[object-position:center_24%] md:[object-position:center_26%] filter contrast-[1.14] brightness-[0.96] saturate-[1.08] [image-rendering:-webkit-optimize-contrast]"
+            className="w-full h-full object-cover [object-position:center_22%] sm:[object-position:center_24%] md:[object-position:center_26%] filter contrast-[1.14] brightness-[0.96] saturate-[1.08] [image-rendering:-webkit-optimize-contrast] origin-center"
           />
           
-          {/* Sombreamento sutil para destacar a foto sem embaçar os detalhes */}
+          {/* Sombreamento para transição com o fundo */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#080c19]/35 via-transparent to-[#080c19]" />
           <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#080c19]/45" />
         </div>
@@ -71,8 +87,8 @@ export function ParallaxComponent({ onOpenICP }) {
         {/* Spacer top */}
         <div className="h-14 sm:h-18"></div>
 
-        {/* TÍTULO CONVERTE+ DENTRO DO HERO */}
-        <div className="relative z-10 text-center px-4 max-w-7xl mx-auto flex flex-col items-center my-auto">
+        {/* TÍTULO CONVERTE+ COM MOVIMENTO DE SAÍDA */}
+        <div data-hero-title className="relative z-10 text-center px-4 max-w-7xl mx-auto flex flex-col items-center my-auto origin-center">
           <h1 className="text-5xl sm:text-8xl lg:text-9xl font-black text-white uppercase tracking-tight drop-shadow-[0_12px_35px_rgba(0,0,0,0.95)] select-none">
             CONVERTE<span className="text-orange-500">+</span>
           </h1>
@@ -96,7 +112,7 @@ export function ParallaxComponent({ onOpenICP }) {
 
 
       {/* ========================================================= */}
-      {/* 2. TRANSITION SCREEN: APENAS O "+" LARANJA ISOLADO        */}
+      {/* 2. TRANSITION SCREEN: O "+" ENTRA DEPOIS DO MOVIMENTO     */}
       {/* ========================================================= */}
       <section 
         id="secao-plus" 

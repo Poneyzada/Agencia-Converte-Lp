@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, Sparkles, ArrowRight } from 'lucide-react';
+import { ChevronDown, HelpCircle, ArrowRight } from 'lucide-react';
 import { siteConfig } from '../config/siteConfig';
 
 export default function FAQSection({ onOpenICP }) {
@@ -75,11 +75,10 @@ export default function FAQSection({ onOpenICP }) {
           <div className="pt-2">
             <button
               onClick={onOpenICP}
-              className="btn-orange px-6 py-3.5 rounded-xl font-bold text-xs inline-flex items-center gap-2 cursor-pointer shadow-lg shadow-orange-500/20"
+              className="btn-orange px-6 py-3.5 rounded-xl font-bold text-xs inline-flex items-center gap-2 cursor-pointer shadow-lg shadow-orange-500/20 group"
             >
-              <Sparkles className="w-4 h-4" />
               <span>Fazer Diagnóstico Grátis Agora</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
         </div>

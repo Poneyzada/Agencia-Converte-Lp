@@ -60,7 +60,7 @@ export default function App() {
         <FoundersSection />
 
         {/* Dúvidas Frequentes */}
-        <FAQSection />
+        <FAQSection onOpenICP={handleOpenICP} />
       </main>
 
       {/* Footer */}
