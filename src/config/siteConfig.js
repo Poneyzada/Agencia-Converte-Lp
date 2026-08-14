@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Converte+",
   tagline: "Agência de Tráfego Pago e Branding",
   description: "Clientes chegando todos os dias sem depender de indicação. Estruturamos sua presença digital e executamos tráfego de alta conversão.",
-  whatsappNumber: "5511999999999", // Default placeholder - editable via top bar
+  whatsappNumber: "5515998411520", // Official Converte+ WhatsApp Phone Number
   founders: [
     {
       name: "Gabriel Silva",
@@ -17,6 +17,63 @@ export const siteConfig = {
       description: "Especialista em copywriting e comunicação estratégica; consultoria de imagem e posicionamento de marca; gestão de tráfego pago focada em conversão; acompanhamento de dados e otimização contínua de campanhas.",
       image: "converte+isabela.webp",
       skills: ["Copywriting", "Branding", "Consultoria de Imagem", "Roteiros de Alta Conversão"]
+    }
+  ],
+  icpQuestions: [
+    {
+      id: 'segment',
+      title: 'Qual é o segmento principal do seu negócio?',
+      subtitle: 'Selecione a opção que melhor descreve sua empresa',
+      options: [
+        { label: 'Serviços Prestados / B2B', value: 'Serviços Prestados / B2B' },
+        { label: 'Comércio / Vendas Locais', value: 'Comércio / Vendas Locais' },
+        { label: 'Infoprodutos / Educação', value: 'Infoprodutos / Educação' },
+        { label: 'Outro Modelo de Negócio', value: 'Outro Modelo' }
+      ]
+    },
+    {
+      id: 'revenue',
+      title: 'Qual é o seu faturamento mensal aproximado?',
+      subtitle: 'Nos ajuda a direcionar a estratégia ideal para o seu momento',
+      options: [
+        { label: 'Até R$ 10 mil / mês', value: 'Até R$ 10k' },
+        { label: 'Entre R$ 10 mil e R$ 30 mil', value: 'R$ 10k a R$ 30k' },
+        { label: 'Entre R$ 30 mil e R$ 100 mil', value: 'R$ 30k a R$ 100k' },
+        { label: 'Acima de R$ 100 mil / mês', value: 'Acima de R$ 100k' }
+      ]
+    },
+    {
+      id: 'budget',
+      title: 'Quanto você pretende investir mensalmente em anúncios?',
+      subtitle: 'Investimento direto nas plataformas (Meta Ads / Google Ads)',
+      options: [
+        { label: 'R$ 1.000 a R$ 2.500 / mês', value: 'R$ 1k a R$ 2.5k' },
+        { label: 'R$ 2.500 a R$ 5.000 / mês', value: 'R$ 2.5k a R$ 5k' },
+        { label: 'R$ 5.000 a R$ 10.000 / mês', value: 'R$ 5k a R$ 10k' },
+        { label: 'Acima de R$ 10.000 / mês', value: 'Acima de R$ 10k' }
+      ]
+    },
+    {
+      id: 'source',
+      title: 'Como vêm seus clientes atualmente?',
+      subtitle: 'Identifica seu nível atual de dependência',
+      options: [
+        { label: '100% dependente de indicação (Boca a boca)', value: '100% Indicação' },
+        { label: 'Redes sociais orgânicas (sem anúncios)', value: 'Orgânico' },
+        { label: 'Já faço tráfego pago mas sem constância', value: 'Tráfego sem constância' },
+        { label: 'Mix de canais sem previsibilidade clara', value: 'Mix sem controle' }
+      ]
+    },
+    {
+      id: 'serviceGoal',
+      title: 'Qual é o seu principal objetivo nos próximos 90 dias?',
+      subtitle: 'Alinha as expectativas de crescimento',
+      options: [
+        { label: 'Ter clientes chegando todos os dias no WhatsApp', value: 'Leads Diários no WhatsApp' },
+        { label: 'Construir autoridade de marca e ser referência', value: 'Autoridade & Marca' },
+        { label: 'Escalar vendas mantendo o custo controlado', value: 'Escalar Vendas' },
+        { label: 'Estruturar o funil de conversão completo', value: 'Funil Completo' }
+      ]
     }
   ],
   pillars: [
