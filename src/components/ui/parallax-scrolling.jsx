@@ -15,8 +15,8 @@ export function ParallaxComponent({ onOpenICP }) {
     const ctx = gsap.context(() => {
       // 1. Animação de saída da foto do Hero
       gsap.to('[data-parallax-photo]', {
-        yPercent: isMobile ? 6 : 12,
-        scale: isMobile ? 0.94 : 0.96,
+        yPercent: isMobile ? 5 : 10,
+        scale: isMobile ? 0.95 : 0.96,
         opacity: 0.5,
         ease: 'none',
         scrollTrigger: {
@@ -43,7 +43,7 @@ export function ParallaxComponent({ onOpenICP }) {
 
       // 3. Transição de entrada do símbolo '+'
       gsap.fromTo('[data-plus-symbol]',
-        { scale: 0.4, opacity: 0, y: 60 },
+        { scale: 0.5, opacity: 0, y: 30 },
         {
           scale: 1,
           opacity: 1,
@@ -51,9 +51,9 @@ export function ParallaxComponent({ onOpenICP }) {
           ease: 'power2.out',
           scrollTrigger: {
             trigger: '[data-plus-screen]',
-            start: 'top 80%',
+            start: 'top 85%',
             end: 'center center',
-            scrub: 0.9
+            scrub: 0.8
           }
         }
       );
@@ -66,17 +66,17 @@ export function ParallaxComponent({ onOpenICP }) {
     <div ref={containerRef} className="relative w-full bg-[#080c19]">
       
       {/* ========================================================= */}
-      {/* 1. HERO SCREEN: MOBILE MANTIDO & DESKTOP AJUSTADO NA MEDIDA */}
+      {/* 1. HERO SCREEN: FOTO COM ZOOM REDUZIDO (ZERO CORTES NO DESKTOP) */}
       {/* ========================================================= */}
       <section data-hero-screen className="relative w-full h-screen flex flex-col items-center justify-between overflow-hidden bg-[#080c19] pt-16 sm:pt-20">
         
-        {/* Foto de Fundo Edge-to-Edge (No desktop desce o cabelo longe do menu e melhora a definição) */}
+        {/* Foto de Fundo com ancoragem no topo 0% para tirar o zoom e exibir a cabeça inteira */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <img 
             data-parallax-photo
             src={heroPhoto} 
             alt="Fundador Converte+ na Poltrona" 
-            className="w-full h-full object-cover [object-position:center_22%] sm:[object-position:center_24%] md:[object-position:center_34%] lg:[object-position:center_36%] filter contrast-[1.14] brightness-[0.96] saturate-[1.08] [image-rendering:-webkit-optimize-contrast] origin-center"
+            className="w-full h-full object-cover [object-position:center_22%] sm:[object-position:center_15%] md:[object-position:center_4%] lg:[object-position:center_0%] filter contrast-[1.14] brightness-[0.96] saturate-[1.08] [image-rendering:-webkit-optimize-contrast] origin-top"
           />
           
           {/* Sombreamento para transição suave */}
@@ -87,8 +87,8 @@ export function ParallaxComponent({ onOpenICP }) {
         {/* Spacer top */}
         <div className="h-14 sm:h-20"></div>
 
-        {/* TÍTULO CONVERTE+ (No desktop posicionado na linha das faixas verdes do colo/poltrona) */}
-        <div data-hero-title className="relative z-10 text-center px-4 max-w-7xl mx-auto flex flex-col items-center my-auto md:translate-y-14 lg:translate-y-20 origin-center">
+        {/* TÍTULO CONVERTE+ POSICIONADO NO COLO DA FOTO */}
+        <div data-hero-title className="relative z-10 text-center px-4 max-w-7xl mx-auto flex flex-col items-center my-auto md:translate-y-12 lg:translate-y-16 origin-center">
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white uppercase tracking-tight drop-shadow-[0_12px_35px_rgba(0,0,0,0.95)] select-none">
             CONVERTE<span className="text-orange-500">+</span>
           </h1>
@@ -112,18 +112,18 @@ export function ParallaxComponent({ onOpenICP }) {
 
 
       {/* ========================================================= */}
-      {/* 2. TRANSITION SCREEN: APENAS O "+" LARANJA ISOLADO        */}
+      {/* 2. TRANSITION SCREEN: TELA COMPACTA DO "+" NO MOBILE       */}
       {/* ========================================================= */}
       <section 
         id="secao-plus" 
         data-plus-screen 
-        className="relative w-full h-screen flex items-center justify-center bg-[#080c19] overflow-hidden"
+        className="relative w-full min-h-[45vh] sm:min-h-screen flex items-center justify-center bg-[#080c19] overflow-hidden py-12 sm:py-0"
       >
         {/* Símbolo "+" Gigante em Laranja Elétrico */}
         <div 
           data-plus-symbol
           onClick={onOpenICP}
-          className="cursor-pointer select-none text-orange-500 font-black text-8xl sm:text-[16rem] lg:text-[22rem] leading-none drop-shadow-[0_0_70px_rgba(255,88,35,0.7)] hover:scale-110 transition-transform duration-300 animate-float"
+          className="cursor-pointer select-none text-orange-500 font-black text-7xl sm:text-[16rem] lg:text-[22rem] leading-none drop-shadow-[0_0_70px_rgba(255,88,35,0.7)] hover:scale-110 transition-transform duration-300 animate-float"
         >
           +
         </div>
