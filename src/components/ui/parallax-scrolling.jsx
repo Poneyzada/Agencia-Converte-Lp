@@ -64,13 +64,13 @@ export function ParallaxComponent({ onOpenICP }) {
       {/* ========================================================= */}
       <div data-hero-pinned-wrapper className="relative w-full h-screen overflow-hidden bg-[#080c19]">
         
-        {/* FOTO DO HERO FULL BLEED (SEM NENHUMA BORDA NAS LATERAIS) */}
+        {/* FOTO DO HERO FULL BLEED COM AJUSTE DE +2% ZOOM OUT E FOTO LEVEMENTE SUBIDA */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <img 
             data-parallax-photo
             src={heroPhoto} 
             alt="Fundador Converte+ na Poltrona" 
-            className="w-full h-full object-cover [object-position:center_22%] sm:[object-position:center_24%] md:[object-position:center_18%] lg:[object-position:center_16%] filter contrast-[1.14] brightness-[0.96] saturate-[1.08] [image-rendering:-webkit-optimize-contrast] origin-center"
+            className="w-full h-full object-cover [object-position:center_20%] sm:[object-position:center_22%] md:[object-position:center_14%] lg:[object-position:center_12%] md:scale-[0.98] transform-gpu filter contrast-[1.14] brightness-[0.96] saturate-[1.08] [image-rendering:-webkit-optimize-contrast] origin-center"
           />
           
           {/* Sombreamento para transição suave */}
