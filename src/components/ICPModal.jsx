@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Sparkles, ArrowRight, ArrowLeft, CheckCircle2, MessageSquare, ShieldCheck, Send, User, Mail, Phone, RefreshCw } from 'lucide-react';
+import { X, ArrowRight, ArrowLeft, CheckCircle2, MessageSquare, ShieldCheck, Send, User, Mail, Phone, RefreshCw } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { siteConfig } from '../config/siteConfig';
 
@@ -20,6 +20,20 @@ export default function ICPModal({ isOpen, onClose, whatsappNumber }) {
   });
 
   const [errorMsg, setErrorMsg] = useState('');
+
+  const saveLeadToLocalStorage = (leadData) => {
+    try {
+      const existing = JSON.parse(localStorage.getItem('converte_leads_db') || '[]');
+      const newLead = {
+        id: 'LEAD-' + Date.now().toString().slice(-6),
+        date: new Date().toLocaleString('pt-BR'),
+        ...leadData
+      };
+      localStorage.setItem('converte_leads_db', JSON.stringify([newLead, ...existing]));
+    } catch (e) {
+      console.error('Error saving lead to storage:', e);
+    }
+  };
 
   const handleSelectOption = (questionId, optionValue) => {
     setAnswers(prev => ({ ...prev, [questionId]: optionValue }));
@@ -59,14 +73,14 @@ export default function ICPModal({ isOpen, onClose, whatsappNumber }) {
   const generateWhatsAppMessage = () => {
     const text = `*Olá! Gostaria de receber meu Diagnóstico Converte+!*
 
-📋 *Resumo da Análise ICP:*
-• *Segmento:* ${answers.segment || 'Não informado'}
-• *Faturamento Mensal:* ${answers.revenue || 'Não informado'}
-• *Investimento em Anúncios:* ${answers.budget || 'Não informado'}
-• *Origem Atual:* ${answers.source || 'Não informado'}
-• *Serviço Solicitado:* ${answers.serviceGoal || 'Não informado'}
+*Resumo das minhas respostas:*
+• *Segmento:* ${answers.segment}
+• *Faturamento Mensal:* ${answers.revenue}
+• *Verba p/ Anúncios:* ${answers.budget}
+• *Origem dos Clientes:* ${answers.source}
+• *Objetivo 90 Dias:* ${answers.serviceGoal}
 
-👤 *Dados para Retorno:*
+*Meus dados de contato:*
 • *Nome:* ${answers.nome}
 • *E-mail:* ${answers.email}
 • *WhatsApp:* ${answers.telefone}`;
@@ -74,24 +88,16 @@ export default function ICPModal({ isOpen, onClose, whatsappNumber }) {
     return encodeURIComponent(text);
   };
 
-  const handleSubmitLead = (e) => {
+  const handleLeadSubmit = (e) => {
     e.preventDefault();
-    if (!answers.nome.trim() || !answers.email.trim() || !answers.telefone.trim()) {
-      setErrorMsg('Por favor, preencha nome, e-mail e WhatsApp para continuar.');
+    if (!answers.nome || !answers.email || !answers.telefone) {
+      setErrorMsg('Por favor, preencha todos os campos.');
       return;
     }
-
     setErrorMsg('');
+    saveLeadToLocalStorage(answers);
+    setCurrentStep(questions.length + 1); // Go to final success screen
     triggerConfetti();
-    setCurrentStep(questions.length + 1);
-
-    const targetNum = cleanPhone(whatsappNumber);
-    const msg = generateWhatsAppMessage();
-    const waUrl = `https://wa.me/${targetNum}?text=${msg}`;
-
-    setTimeout(() => {
-      window.open(waUrl, '_blank');
-    }, 350);
   };
 
   const handleReset = () => {
@@ -108,128 +114,122 @@ export default function ICPModal({ isOpen, onClose, whatsappNumber }) {
     });
   };
 
-  const totalSteps = questions.length + 1;
-  const progressPercent = Math.min(100, Math.round(((currentStep + 1) / totalSteps) * 100));
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#080c19]/85 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
       
-      {/* Modal Container */}
-      <div className="relative w-full max-w-2xl bg-[#0e1529] border border-white/15 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden my-auto">
+      {/* Modal Card */}
+      <div className="relative w-full max-w-lg glass-panel bg-[#0e1529]/95 border border-white/20 rounded-3xl shadow-2xl p-6 sm:p-8 overflow-hidden">
         
-        {/* Top Header / Close */}
-        <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+        {/* Glow halo background */}
+        <div className="absolute top-0 right-0 w-40 h-40 bg-orange-500/10 rounded-full blur-2xl pointer-events-none" />
+
+        {/* Header bar */}
+        <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/10">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-orange-500/20 border border-orange-500/30 text-orange-500 flex items-center justify-center font-bold text-sm">
-              C<span className="text-orange-400">+</span>
+            <div className="w-8 h-8 rounded-lg bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-400 font-bold text-xs">
+              +
             </div>
             <div>
-              <span className="text-sm font-bold text-white tracking-wide">Diagnóstico Converte+</span>
-              <span className="block text-[10px] text-gray-400">Análise Gratuita de Presença Digital</span>
+              <h3 className="font-extrabold text-sm sm:text-base text-white tracking-tight">
+                Diagnóstico Converte+
+              </h3>
+              <span className="text-[10px] text-gray-400 font-mono">
+                {currentStep < questions.length ? `Passo ${currentStep + 1} de ${questions.length}` : 'Etapa Final'}
+              </span>
             </div>
           </div>
 
-          <button 
+          <button
             onClick={onClose}
-            className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors cursor-pointer"
+            className="p-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Progress Bar */}
-        {currentStep <= questions.length && (
-          <div className="mb-6">
-            <div className="flex items-center justify-between text-xs font-semibold text-gray-400 mb-2">
-              <span>Etapa {Math.min(currentStep + 1, totalSteps)} de {totalSteps}</span>
-              <span className="text-orange-400 font-mono">{progressPercent}% Concluído</span>
-            </div>
-            <div className="w-full h-2 rounded-full bg-white/10 overflow-hidden">
+        {/* STEP 0 to 4: QUIZ QUESTIONS */}
+        {currentStep < questions.length && (
+          <div className="space-y-5 animate-in fade-in-50 duration-200">
+            
+            {/* Progress bar */}
+            <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-gradient-to-r from-orange-500 to-amber-500 transition-all duration-300 ease-out"
-                style={{ width: `${progressPercent}%` }}
+                className="bg-gradient-to-r from-orange-500 to-amber-500 h-full transition-all duration-300"
+                style={{ width: `${((currentStep + 1) / questions.length) * 100}%` }}
               />
             </div>
-          </div>
-        )}
 
-        {/* STEP 0 to 4: QUESTIONS */}
-        {currentStep < questions.length && (
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-1.5">
+            {/* Question title */}
+            <div className="space-y-1">
+              <h4 className="text-base sm:text-lg font-bold text-white leading-snug">
                 {questions[currentStep].title}
-              </h3>
-              <p className="text-xs sm:text-sm text-gray-400">
+              </h4>
+              <p className="text-xs text-gray-300">
                 {questions[currentStep].subtitle}
               </p>
             </div>
 
             {/* Options list */}
-            <div className="space-y-2.5">
-              {questions[currentStep].options.map((opt, idx) => {
-                const isSelected = answers[questions[currentStep].id] === opt.value;
+            <div className="space-y-2.5 pt-1">
+              {questions[currentStep].options.map((option, idx) => {
+                const isSelected = answers[questions[currentStep].id] === option.value;
+
                 return (
                   <button
                     key={idx}
-                    onClick={() => handleSelectOption(questions[currentStep].id, opt.value)}
-                    className={`w-full text-left px-4 py-3.5 rounded-2xl border transition-all duration-200 flex items-center justify-between group cursor-pointer ${
-                      isSelected 
-                        ? 'bg-orange-500/20 border-orange-500 text-white shadow-lg shadow-orange-500/10' 
-                        : 'bg-white/5 border-white/10 text-gray-200 hover:bg-white/10 hover:border-orange-500/40 hover:text-white'
+                    onClick={() => handleSelectOption(questions[currentStep].id, option.value)}
+                    className={`w-full p-3.5 rounded-2xl text-left text-xs font-semibold transition-all duration-200 border flex items-center justify-between cursor-pointer ${
+                      isSelected
+                        ? 'bg-orange-500/20 border-orange-500 text-white shadow-md shadow-orange-500/10'
+                        : 'bg-white/5 border-white/10 hover:border-orange-500/40 text-gray-200 hover:bg-white/10'
                     }`}
                   >
-                    <span className="font-medium text-xs sm:text-sm">{opt.label}</span>
-                    <div className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all ${
-                      isSelected 
-                        ? 'bg-orange-500 border-orange-400 text-white' 
-                        : 'border-white/20 group-hover:border-orange-400'
+                    <span>{option.label}</span>
+                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                      isSelected ? 'border-orange-500 bg-orange-500' : 'border-white/30'
                     }`}>
-                      {isSelected ? <CheckCircle2 className="w-3.5 h-3.5 text-white" /> : <div className="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-orange-400/50" />}
+                      {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
                     </div>
                   </button>
                 );
               })}
             </div>
 
-            {/* Navigation controls */}
+            {/* Navigation back button */}
             {currentStep > 0 && (
-              <div className="pt-4 border-t border-white/10 flex justify-between items-center">
+              <div className="pt-2">
                 <button
                   onClick={() => setCurrentStep(prev => prev - 1)}
-                  className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors cursor-pointer"
+                  className="text-xs text-gray-400 hover:text-white flex items-center gap-1 transition-colors"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
-                  <span>Pergunta anterior</span>
+                  <span>Voltar para pergunta anterior</span>
                 </button>
               </div>
             )}
+
           </div>
         )}
 
-        {/* STEP 5: LEAD DETAILS FORM */}
+        {/* STEP 5: LEAD CONTACT FORM */}
         {currentStep === questions.length && (
-          <form onSubmit={handleSubmitLead} className="space-y-4">
-            <div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-500/10 text-orange-400 text-xs font-semibold mb-2">
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                <span>Análise de perfil concluída!</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-1">
-                Para onde devemos enviar seu Diagnóstico?
-              </h3>
+          <form onSubmit={handleLeadSubmit} className="space-y-4 animate-in fade-in-50 duration-200">
+            <div className="space-y-1">
+              <h4 className="text-base sm:text-lg font-bold text-white">
+                Para onde enviamos a análise gratuita?
+              </h4>
               <p className="text-xs text-gray-300">
-                Preencha abaixo para gerar sua proposta personalizada e abrir o atendimento no WhatsApp.
+                Preencha seus dados para conectar sua análise diretamente ao WhatsApp de nossos especialistas.
               </p>
             </div>
 
             {errorMsg && (
-              <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs">
+              <div className="p-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-medium">
                 {errorMsg}
               </div>
             )}
 
-            <div className="space-y-3">
+            <div className="space-y-3 pt-1">
               <div>
                 <label className="block text-[11px] font-semibold text-gray-300 uppercase tracking-wider mb-1">
                   Seu Nome Completo

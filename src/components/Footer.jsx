@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowUp, Shield, Lock, Plus } from 'lucide-react';
 
-export default function Footer() {
+export default function Footer({ onOpenCRM }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -12,7 +12,7 @@ export default function Footer() {
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
           
-          {/* Brand Col - Clean Logo Icon '+' SVG + Text 'Converte+' */}
+          {/* Brand Col */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-500 p-[1px]">
@@ -61,9 +61,21 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom Bar with Discreet Admin CRM Link right next to Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-          <p>© {new Date().getFullYear()} Converte+ Agência de Performance. Todos os direitos reservados.</p>
+          <div className="flex items-center gap-3">
+            <p>© {new Date().getFullYear()} Converte+ Agência de Performance. Todos os direitos reservados.</p>
+            
+            {/* Discreet Admin CRM Access Button */}
+            <button
+              onClick={onOpenCRM}
+              className="inline-flex items-center gap-1 text-[11px] text-gray-500 hover:text-orange-400 transition-colors px-2 py-0.5 rounded bg-white/5 border border-white/10 cursor-pointer"
+              title="Área Administrativa de Leads (CRM)"
+            >
+              <Lock className="w-3 h-3 text-orange-400" />
+              <span>Painel CRM</span>
+            </button>
+          </div>
 
           <button
             onClick={scrollToTop}

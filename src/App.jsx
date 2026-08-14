@@ -11,14 +11,19 @@ import FoundersSection from './components/FoundersSection';
 import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
 import ICPModal from './components/ICPModal';
+import AdminCRMModal from './components/AdminCRMModal';
 import { siteConfig } from './config/siteConfig';
 
 export default function App() {
   const [whatsappNumber] = useState(siteConfig.whatsappNumber);
   const [icpModalOpen, setIcpModalOpen] = useState(false);
+  const [crmModalOpen, setCrmModalOpen] = useState(false);
 
   const handleOpenICP = () => setIcpModalOpen(true);
   const handleCloseICP = () => setIcpModalOpen(false);
+
+  const handleOpenCRM = () => setCrmModalOpen(true);
+  const handleCloseCRM = () => setCrmModalOpen(false);
 
   return (
     <div className="min-h-screen bg-[#080c19] text-gray-100 flex flex-col font-sans selection:bg-orange-500 selection:text-white">
@@ -56,14 +61,20 @@ export default function App() {
         <FAQSection onOpenICP={handleOpenICP} />
       </main>
 
-      {/* Footer */}
-      <Footer />
+      {/* Footer with CRM link next to copyright */}
+      <Footer onOpenCRM={handleOpenCRM} />
 
       {/* ICP Popup Form Modal */}
       <ICPModal
         isOpen={icpModalOpen}
         onClose={handleCloseICP}
         whatsappNumber={whatsappNumber}
+      />
+
+      {/* Internal Protected Admin CRM Modal */}
+      <AdminCRMModal
+        isOpen={crmModalOpen}
+        onClose={handleCloseCRM}
       />
 
     </div>
