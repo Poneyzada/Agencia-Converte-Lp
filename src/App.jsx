@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import WhatsAppConfigBar from './components/WhatsAppConfigBar';
 import Header from './components/Header';
 import { ParallaxComponent } from './components/ui/parallax-scrolling';
 import MethodSection from './components/MethodSection';
@@ -15,7 +14,7 @@ import ICPModal from './components/ICPModal';
 import { siteConfig } from './config/siteConfig';
 
 export default function App() {
-  const [whatsappNumber, setWhatsappNumber] = useState(siteConfig.whatsappNumber);
+  const [whatsappNumber] = useState(siteConfig.whatsappNumber);
   const [icpModalOpen, setIcpModalOpen] = useState(false);
 
   const handleOpenICP = () => setIcpModalOpen(true);
@@ -24,12 +23,6 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#080c19] text-gray-100 flex flex-col font-sans selection:bg-orange-500 selection:text-white">
       
-      {/* WhatsApp verification / editing header */}
-      <WhatsAppConfigBar 
-        whatsappNumber={whatsappNumber}
-        onUpdateWhatsApp={setWhatsappNumber}
-      />
-
       {/* Main Header Navbar */}
       <Header onOpenICP={handleOpenICP} />
 

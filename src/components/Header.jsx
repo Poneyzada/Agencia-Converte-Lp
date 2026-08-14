@@ -7,7 +7,7 @@ export default function Header({ onOpenICP }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -23,7 +23,7 @@ export default function Header({ onOpenICP }) {
 
   return (
     <header
-      className={`fixed top-12 left-0 right-0 z-40 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
           ? 'bg-[#080c19]/90 backdrop-blur-md py-3 border-b border-white/10 shadow-2xl'
           : 'bg-transparent py-5'
