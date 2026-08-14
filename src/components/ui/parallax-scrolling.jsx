@@ -50,22 +50,22 @@ export function ParallaxComponent({ onOpenICP }) {
     <div ref={containerRef} className="relative w-full bg-[#080c19]">
       
       {/* ========================================================= */}
-      {/* 1. HERO SCREEN: MOBILE FIRST & DESKTOP                    */}
+      {/* 1. HERO SCREEN: FOTO FULL BLEED HD COM NITIDEZ OTIMIZADA  */}
       {/* ========================================================= */}
       <section data-hero-screen className="relative w-full h-screen flex flex-col items-center justify-between overflow-hidden bg-[#080c19] pt-16 sm:pt-12">
         
-        {/* Foto de Fundo Edge-to-Edge */}
+        {/* Foto de Fundo Edge-to-Edge com Filtro de Nitidez HD */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <img 
             data-parallax-photo
             src={heroPhoto} 
             alt="Fundador Converte+ na Poltrona" 
-            className="w-full h-full object-cover [object-position:center_22%] sm:[object-position:center_24%] md:[object-position:center_26%] filter brightness-[0.92] contrast-105"
+            className="w-full h-full object-cover [object-position:center_22%] sm:[object-position:center_24%] md:[object-position:center_26%] filter contrast-[1.14] brightness-[0.96] saturate-[1.08] [image-rendering:-webkit-optimize-contrast]"
           />
           
-          {/* Sombra e iluminação sutil */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#080c19]/40 via-transparent to-[#080c19]" />
-          <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#080c19]/50" />
+          {/* Sombreamento sutil para destacar a foto sem embaçar os detalhes */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#080c19]/35 via-transparent to-[#080c19]" />
+          <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#080c19]/45" />
         </div>
 
         {/* Spacer top */}
