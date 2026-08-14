@@ -64,18 +64,18 @@ export function ParallaxComponent({ onOpenICP }) {
       {/* ========================================================= */}
       <div data-hero-pinned-wrapper className="relative w-full h-screen overflow-hidden bg-[#080c19]">
         
-        {/* FOTO DO HERO (ILUMINAÇÃO E CORES 100% NATURAIS SEM FILTROS) */}
+        {/* FOTO DO HERO (ILUMINAÇÃO ESCURECIDA E SUAVIZADA, ZERO LUZ ESTOURADA NO ROSTO) */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <img 
             data-parallax-photo
             src={heroPhoto} 
             alt="Fundador Converte+ na Poltrona" 
-            className="w-full h-full object-cover [object-position:center_22%] origin-center"
+            className="w-full h-full object-cover [object-position:center_22%] filter brightness-[0.80] contrast-95 origin-center"
           />
           
-          {/* Sombreamento para transição suave */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#080c19]/40 via-transparent to-[#080c19]" />
-          <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#080c19]/45" />
+          {/* Sombreamento escuro aveludado para suavizar a luz no rosto */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#080c19]/60 via-[#080c19]/30 to-[#080c19]" />
+          <div className="absolute inset-0 bg-radial from-transparent via-[#080c19]/20 to-[#080c19]/60" />
         </div>
 
         {/* TÍTULO CONVERTE+ (IDÊNTICO AO MOBILE) */}
@@ -127,7 +127,7 @@ export function ParallaxComponent({ onOpenICP }) {
 
           {/* Texto Explicativo da Copy */}
           <p className="text-sm sm:text-lg lg:text-xl text-gray-300 font-normal leading-relaxed mb-8 sm:mb-10 max-w-3xl">
-            Você já tem um bom produto e clientes que confiam em você. A gente estrutura sua presença digital e traz as pessoas certas, de forma previsível, para o seu site e o seu WhatsApp — para você parar de torcer pela indicação earning passar a saber como vai fechar o mês.
+            Você já tem um bom produto e clientes que confiam em você. A gente estrutura sua presença digital e traz as pessoas certas, de forma previsível, para o seu site e o seu WhatsApp — para você parar de torcer pela indicação e passar a saber como vai fechar o mês.
           </p>
 
           {/* Botões de Ação */}

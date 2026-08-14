@@ -30,11 +30,10 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="py-20 sm:py-28 relative bg-[#080c19] overflow-hidden border-t border-white/5">
+    <section className="py-20 sm:py-24 relative bg-[#080c19] overflow-hidden border-t border-white/5">
       
-      {/* Background Glows */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[35rem] h-[35rem] bg-orange-500/10 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[35rem] h-[35rem] bg-blue-600/10 rounded-full blur-[160px] pointer-events-none" />
+      {/* Ambient Background Radial Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[45rem] bg-orange-500/10 rounded-full blur-[180px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
         
@@ -51,41 +50,35 @@ export default function StatsSection() {
           </h2>
         </div>
 
-        {/* Vibrant High-Contrast Stats Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Clean Organic Metrics Layout (Sem caixas escuras feias) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {statsData.map((item, idx) => {
             const IconComp = item.icon;
 
             return (
               <div
                 key={idx}
-                className="glass-panel p-6 rounded-3xl border border-orange-500/30 bg-[#0e1529] shadow-xl hover:border-orange-500/60 hover:shadow-orange-500/20 transition-all duration-300 space-y-4 group relative overflow-hidden"
+                className="flex flex-col items-center text-center space-y-3 p-6 rounded-3xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 hover:border-orange-500/40 transition-all duration-300 relative group"
               >
-                {/* Glow Halo corner */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500/10 rounded-full blur-xl group-hover:bg-orange-500/20 transition-colors pointer-events-none" />
-
-                <div className="flex items-center justify-between">
-                  <div className="w-11 h-11 rounded-2xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-orange-400 group-hover:scale-110 transition-transform shadow-md">
-                    <IconComp className="w-5 h-5" />
-                  </div>
-                  <span className="w-2 h-2 rounded-full bg-orange-500 animate-ping" />
+                {/* Icon Circle */}
+                <div className="w-12 h-12 rounded-full bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-orange-400 group-hover:scale-110 transition-transform shadow-lg shadow-orange-500/10">
+                  <IconComp className="w-5 h-5" />
                 </div>
 
+                {/* Giant Orange Gradient Number */}
+                <span className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-white via-orange-300 to-orange-500 bg-clip-text text-transparent block tracking-tight">
+                  {item.number}
+                </span>
+
+                {/* Label */}
                 <div className="space-y-1">
-                  {/* Giant Vibrant Orange Gradient Number */}
-                  <span className="text-3xl sm:text-4xl font-black bg-gradient-to-r from-white via-orange-300 to-orange-500 bg-clip-text text-transparent block tracking-tight">
-                    {item.number}
-                  </span>
-                  
-                  {/* Label */}
-                  <h3 className="text-sm font-bold text-white leading-snug">
+                  <h3 className="text-sm font-bold text-white">
                     {item.label}
                   </h3>
+                  <p className="text-xs text-gray-400 font-medium">
+                    {item.detail}
+                  </p>
                 </div>
-
-                <p className="text-xs text-gray-400 pt-2 border-t border-white/10 font-medium">
-                  {item.detail}
-                </p>
 
               </div>
             );
