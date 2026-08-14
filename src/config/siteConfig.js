@@ -78,153 +78,153 @@ export const siteConfig = {
       "Você não tem estrutura ou equipe para atender novos clientes no WhatsApp"
     ]
   },
-  roadmap: [
-    {
-      step: "01",
-      title: "Diagnóstico",
-      description: "Análise gratuita da sua presença digital, do seu mercado e de onde vêm seus clientes hoje."
-    },
-    {
-      step: "02",
-      title: "Ajuste de base",
-      description: "Organização do perfil, bio, links e comunicação de autoridade antes do primeiro anúncio rodar."
-    },
-    {
-      step: "03",
-      title: "Anúncios e Páginas",
-      description: "Configuração das contas, pixel, criativos e campanhas de Meta Ads e Google Ads no ar."
-    },
-    {
-      step: "04",
-      title: "Escala",
-      description: "Acompanhamento semanal, otimização contínua de anúncios e ampliação de públicos qualificados."
-    }
-  ],
   plans: [
     {
-      title: "Organização Inicial",
-      subtitle: "Para arrumar a casa e estruturar a base",
+      id: "essencial",
+      title: "Essencial",
+      tagline: "Os primeiros passos da previsibilidade",
+      idealFor: "Para você que já vende, mas só por indicação.",
+      milestone: "Os primeiros contatos chegando de forma previsível.",
       popular: false,
-      features: [
-        "Diagnóstico completo de presença digital",
-        "Organização do perfil, bio e canal de vendas",
-        "Configuração inicial de contas no Meta & Google",
-        "Definição da linha editorial de autoridade",
-        "Suporte direto via WhatsApp"
+      badgeText: "Início Rápido",
+      categories: [
+        {
+          name: "Base e presença",
+          items: [
+            "Organização da sua presença digital",
+            "Página de venda focada em contato",
+            "Configuração inicial dos anúncios e da medição dos resultados"
+          ]
+        },
+        {
+          name: "Anúncios",
+          items: [
+            "Anúncios em 2 canais (ex.: Instagram/Facebook e Google)",
+            "Criação de imagens e textos de anúncio"
+          ]
+        },
+        {
+          name: "Acompanhamento",
+          items: [
+            "Painel com os números do mês",
+            "Acompanhamento direto via WhatsApp"
+          ]
+        }
       ],
-      ctaText: "Solicitar Proposta"
+      ctaText: "Começar pelo diagnóstico gratuito"
     },
     {
-      title: "Diagnóstico & Tráfego",
-      subtitle: "Nosso plano mais procurado para gerar previsibilidade",
+      id: "crescimento",
+      title: "Crescimento",
+      tagline: "Previsibilidade + autoridade de marca",
+      idealFor: "Para você que quer previsibilidade e virar referência.",
+      milestone: "Contatos previsíveis todo mês + marca forte.",
       popular: true,
-      features: [
-        "Tudo da Organização Inicial incluído",
-        "Gestão completa de Meta Ads e Google Ads (2 canais)",
-        "Criação de imagens, roteiros e textos de anúncios",
-        "Página de alta conversão para captura de leads",
-        "Acompanhamento direto e relatórios de métricas",
-        "Otimização semanal focada em redução de CPL"
+      badgeText: "Mais Escolhido",
+      categories: [
+        {
+          name: "Base e marca",
+          items: [
+            "Tudo do plano Essencial",
+            "Ajuste da identidade visual e da forma de comunicar",
+            "Direção de conteúdo, foto e vídeo"
+          ]
+        },
+        {
+          name: "Anúncios",
+          items: [
+            "Anúncios em até 4 canais",
+            "Mais versões de imagens, textos e vídeos para testar",
+            "Medição completa dos resultados, ponta a ponta"
+          ]
+        },
+        {
+          name: "Conversão",
+          items: [
+            "Páginas de venda extras conforme necessidade",
+            "Organização dos contatos que chegam (CRM simples)"
+          ]
+        },
+        {
+          name: "Acompanhamento",
+          items: [
+            "Reuniões a cada 15 dias",
+            "Responsável dedicado pela sua conta"
+          ]
+        }
       ],
-      ctaText: "Quero meu diagnóstico grátis"
+      ctaText: "Começar pelo diagnóstico gratuito"
     },
     {
-      title: "Escala Previsível",
-      subtitle: "Para marcas prontas para expandir múltiplos canais",
+      id: "escala",
+      title: "Escala",
+      tagline: "Previsibilidade em escala",
+      idealFor: "Para você que já tem demanda e quer escalar com segurança.",
+      milestone: "Previsibilidade em escala, com previsão de resultados.",
       popular: false,
-      features: [
-        "Gestão avançada de múltiplos canais (Meta, Google, YouTube)",
-        "Criação de criativos em escala contínua",
-        "Públicos Lookalike de alta inteligência",
-        "Estratégia avançada de branding + tráfego",
-        "Atendimento com prioridade máxima dos fundadores"
+      badgeText: "Alta Escala",
+      categories: [
+        {
+          name: "Base e marca completa",
+          items: [
+            "Tudo do plano Crescimento",
+            "Posicionamento de marca de ponta a ponta",
+            "Diretrizes de marca para todos os canais"
+          ]
+        },
+        {
+          name: "Anúncios em escala",
+          items: [
+            "Anúncios em vários canais sem limite",
+            "Medição avançada e painéis sob medida"
+          ]
+        },
+        {
+          name: "Conversão e organização",
+          items: [
+            "Páginas de venda sem limite",
+            "Organização dos contatos integrada às suas ferramentas",
+            "Qualificação dos contatos antes de chegarem em você"
+          ]
+        },
+        {
+          name: "Estratégia",
+          items: [
+            "Previsão de quantos contatos e qual receita esperar",
+            "Time dedicado de várias áreas",
+            "Reuniões semanais com a liderança"
+          ]
+        }
       ],
-      ctaText: "Falar sobre Escala"
+      ctaText: "Começar pelo diagnóstico gratuito"
     }
   ],
   stats: [
-    { value: "100%", label: "Propriedade das suas contas" },
-    { value: "90 dias", label: "Consolidação da previsibilidade" },
-    { value: "Direto", label: "Atendimento com os fundadores" },
-    { value: "Zero", label: "Pacotes engessados" }
+    { number: "+R$ 10M", label: "Gerados em faturamento" },
+    { number: "98.4%", label: "Retenção de clientes" },
+    { number: "+50k", label: "Leads qualificados entregues" },
+    { number: "24/7", label: "Monitoramento de campanhas" }
   ],
   faqs: [
     {
-      question: "Eu já vendo por indicação. Por que preciso de anúncio?",
-      answer: "Indicação é ótima, mas você não controla quando vem. Anúncio, com uma marca bem feita por trás, transforma isso num fluxo previsível: contato chegando todo dia, dá para planejar como você vai fechar o mês."
+      question: "Em quanto tempo começo a ver contatos no meu WhatsApp?",
+      answer: "O processo de ajuste de base e lançamento de campanhas leva até 7 dias úteis. A partir do momento em que os anúncios vão ao ar, os primeiros contatos já começam a chegar no mesmo dia."
     },
     {
-      question: "Eu posto mas não vem cliente. O que muda?",
-      answer: "Postar sem estratégia vira esforço sem retorno. A gente estrutura sua presença e mira em quem tem mais chance de comprar — para o conteúdo e o anúncio virarem contato, não só visualização."
+      question: "As contas de anúncios e o site ficam no meu nome?",
+      answer: "Sim! 100% de tudo o que criamos (contas de anúncios, acessos, domínios e gerenciadores) pertence à sua empresa. Transparência total."
     },
     {
-      question: "Em quanto tempo vejo os resultados?",
-      answer: "A organização aparece nas primeiras semanas; a previsibilidade pelos anúncios se firma ao longo de 90 dias. Sendo honesto: previsibilidade se constrói, não se liga num botão."
+      question: "Existe contrato de fidelidade longa com multa?",
+      answer: "Não trabalhamos com contratos engessados de longo prazo. Recomendamos 90 dias para consolidação técnica e escala, mas nossa parceria se mantém pela geração de resultados contínuos."
     },
     {
-      question: "Como funciona o valor e investimento?",
-      answer: "Sob consulta, considerando configuração inicial, acompanhamento mensal e a verba de anúncios. Trabalhamos com um contrato mínimo de 3 meses, para dar tempo da estratégia performar. Definimos tudo depois do diagnóstico."
+      question: "Eu preciso aparecer em vídeos ou gravar conteúdos?",
+      answer: "Não é obrigatório. Desenvolvemos estratégias com criativos estáticos, carrosséis de alta conversão e roteiros profissionais. Mas caso você queira gravar, nossa equipe dá toda a direção."
     },
     {
-      question: "As contas e os anúncios ficam comigo?",
-      answer: "Sim, são seus desde o primeiro dia. Você é dono das suas contas e dos seus anúncios, com tudo à vista."
-    }
-  ],
-  icpQuestions: [
-    {
-      id: "segment",
-      title: "Qual é o seu segmento de atuação?",
-      subtitle: "Selecione o setor principal do seu negócio",
-      options: [
-        { label: "Serviços Profissionais / Consultoria / B2B", value: "Serviços Profissionais/B2B" },
-        { label: "Clínica / Saúde / Estética / Odontologia", value: "Saúde & Estética" },
-        { label: "E-commerce / Infoproduto / Educação", value: "E-commerce/Digital" },
-        { label: "Mercado Imobiliário / Construção / Arquitetura", value: "Imobiliário/Arquitetura" },
-        { label: "Outro Segmento / Comércio Local", value: "Outro Segmento" }
-      ]
-    },
-    {
-      id: "revenue",
-      title: "Qual o seu faturamento mensal atual?",
-      subtitle: "Para entender a estrutura do seu negócio",
-      options: [
-        { label: "Até R$ 20.000 / mês", value: "Até R$ 20k/mês" },
-        { label: "R$ 20.000 a R$ 50.000 / mês", value: "R$ 20k a R$ 50k/mês" },
-        { label: "R$ 50.000 a R$ 150.000 / mês", value: "R$ 50k a R$ 150k/mês" },
-        { label: "Acima de R$ 150.000 / mês", value: "Acima de R$ 150k/mês" }
-      ]
-    },
-    {
-      id: "budget",
-      title: "Quanto planeja investir em anúncios por mês?",
-      subtitle: "Verba destinada ao Meta Ads & Google Ads",
-      options: [
-        { label: "R$ 1.500 a R$ 3.000 / mês", value: "R$ 1.5k a R$ 3k/mês" },
-        { label: "R$ 3.000 a R$ 5.000 / mês", value: "R$ 3k a R$ 5k/mês" },
-        { label: "R$ 5.000 a R$ 10.000 / mês", value: "R$ 5k a R$ 10k/mês" },
-        { label: "Acima de R$ 10.000 / mês", value: "Acima de R$ 10k/mês" }
-      ]
-    },
-    {
-      id: "source",
-      title: "Hoje, de onde vem a maioria dos seus clientes?",
-      subtitle: "Identificação do canal principal de aquisição",
-      options: [
-        { label: "Quase 100% por indicação de terceiros", value: "Indicação/Boca a Boca" },
-        { label: "Postagens orgânicas em redes sociais", value: "Orgânico Social" },
-        { label: "Já anunciamos, mas sem consistência/resultado", value: "Anúncios Inconstantes" },
-        { label: "Outros canais (Eventos, Parcerias, Ativo)", value: "Outros Canais" }
-      ]
-    },
-    {
-      id: "serviceGoal",
-      title: "Qual o seu objetivo principal no momento?",
-      subtitle: "Escolha o foco do acompanhamento",
-      options: [
-        { label: "Tráfego Pago (Gerar contatos no WhatsApp todos os dias)", value: "Tráfego Pago & Lead Gen" },
-        { label: "Branding & Imagem (Melhorar posicionamento e autoridade)", value: "Branding & Autoridade" },
-        { label: "Reestruturação Completa (Base + Anúncios + Copy)", value: "Reestruturação Completa Converte+" }
-      ]
+      question: "Como funciona o diagnóstico gratuito?",
+      answer: "Clicando em qualquer botão de diagnóstico, você responde a 5 perguntas objetivas sobre o seu negócio. Nossa equipe analisa sua presença digital e entra em contato via WhatsApp com um plano prático."
     }
   ]
 };

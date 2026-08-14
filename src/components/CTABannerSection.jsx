@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { ArrowRight, Plus } from 'lucide-react';
 
 export default function CTABannerSection({ onOpenICP }) {
   return (
@@ -10,8 +10,8 @@ export default function CTABannerSection({ onOpenICP }) {
           
           {/* Logo Badge Icon */}
           <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-orange-500 to-amber-500 p-[1px] mx-auto shadow-lg shadow-orange-500/20">
-            <div className="w-full h-full bg-[#0e1529] rounded-[15px] flex items-center justify-center font-black text-2xl text-orange-500">
-              +
+            <div className="w-full h-full bg-[#0e1529] rounded-[15px] flex items-center justify-center">
+              <Plus className="w-7 h-7 text-orange-500 stroke-[3]" />
             </div>
           </div>
 
@@ -27,11 +27,10 @@ export default function CTABannerSection({ onOpenICP }) {
           <div className="pt-2">
             <button
               onClick={onOpenICP}
-              className="btn-orange px-8 py-4 rounded-xl font-bold text-sm inline-flex items-center gap-3 cursor-pointer shadow-xl shadow-orange-500/25"
+              className="btn-orange px-8 py-4 rounded-xl font-bold text-sm inline-flex items-center gap-3 cursor-pointer shadow-xl shadow-orange-500/25 group"
             >
-              <Sparkles className="w-4 h-4" />
               <span>Fazer diagnóstico gratuito</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sparkles, ArrowRight, Plus } from 'lucide-react';
+import { Menu, X, ArrowRight, Plus } from 'lucide-react';
 
 export default function Header({ onOpenICP }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,7 +32,7 @@ export default function Header({ onOpenICP }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Brand Logo - Pixel-perfect SVG Plus centering */}
+          {/* Brand Logo */}
           <a href="#" className="flex items-center gap-2.5 group">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-500 p-[1px] shadow-lg shadow-orange-500/20 group-hover:scale-105 transition-transform">
               <div className="w-full h-full bg-[#0e1529] rounded-[10px] flex items-center justify-center">
@@ -61,10 +61,10 @@ export default function Header({ onOpenICP }) {
           <div className="hidden md:flex items-center gap-3">
             <button
               onClick={onOpenICP}
-              className="btn-orange px-5 py-2.5 rounded-xl font-bold text-xs shadow-lg shadow-orange-500/20 flex items-center gap-2 cursor-pointer"
+              className="btn-orange px-5 py-2.5 rounded-xl font-bold text-xs shadow-lg shadow-orange-500/20 flex items-center gap-2 cursor-pointer group"
             >
-              <Sparkles className="w-3.5 h-3.5" />
               <span>Diagnóstico Grátis</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
 
@@ -103,7 +103,6 @@ export default function Header({ onOpenICP }) {
             }}
             className="btn-orange w-full py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20"
           >
-            <Sparkles className="w-4 h-4" />
             <span>Fazer Diagnóstico Grátis</span>
             <ArrowRight className="w-4 h-4" />
           </button>

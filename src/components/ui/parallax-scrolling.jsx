@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Sparkles, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
 import heroPhoto from '../../assets/converte+foto-hero.webp';
 import { useDeviceType } from '../../hooks/useMediaQuery';
 
@@ -13,7 +13,7 @@ export function ParallaxComponent({ onOpenICP }) {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Leve efeito parallax na foto do hero (ajustado para mobile e desktop)
+      // Leve efeito parallax na foto do hero
       gsap.to('[data-parallax-photo]', {
         yPercent: isMobile ? 5 : 10,
         ease: 'none',
@@ -54,7 +54,7 @@ export function ParallaxComponent({ onOpenICP }) {
       {/* ========================================================= */}
       <section data-hero-screen className="relative w-full h-screen flex flex-col items-center justify-between overflow-hidden bg-[#080c19] pt-16 sm:pt-12">
         
-        {/* Foto de Fundo Edge-to-Edge (Otimizada Mobile-First) */}
+        {/* Foto de Fundo Edge-to-Edge */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <img 
             data-parallax-photo
@@ -68,17 +68,17 @@ export function ParallaxComponent({ onOpenICP }) {
           <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#080c19]/50" />
         </div>
 
-        {/* Spacer top para afastar o conteúdo do menu mobile/desktop */}
+        {/* Spacer top */}
         <div className="h-14 sm:h-18"></div>
 
-        {/* TÍTULO CONVERTE+ DENTRO DO HERO (Mobile First typography) */}
+        {/* TÍTULO CONVERTE+ DENTRO DO HERO */}
         <div className="relative z-10 text-center px-4 max-w-7xl mx-auto flex flex-col items-center my-auto">
           <h1 className="text-5xl sm:text-8xl lg:text-9xl font-black text-white uppercase tracking-tight drop-shadow-[0_12px_35px_rgba(0,0,0,0.95)] select-none">
             CONVERTE<span className="text-orange-500">+</span>
           </h1>
         </div>
 
-        {/* Botão de Scroll no Rodapé do Hero (Com toque grande para Mobile) */}
+        {/* Botão de Scroll no Rodapé do Hero */}
         <div className="relative z-10 pb-6 sm:pb-8">
           <div 
             className="flex flex-col items-center gap-1 text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest text-gray-200 animate-bounce cursor-pointer bg-black/60 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border border-white/15 backdrop-blur-md hover:bg-black/80 transition-colors shadow-2xl" 
@@ -103,7 +103,7 @@ export function ParallaxComponent({ onOpenICP }) {
         data-plus-screen 
         className="relative w-full h-screen flex items-center justify-center bg-[#080c19] overflow-hidden"
       >
-        {/* Símbolo "+" Gigante em Laranja Elétrico (Responsivo para Celular e Telas Grandes) */}
+        {/* Símbolo "+" Gigante em Laranja Elétrico */}
         <div 
           data-plus-symbol
           onClick={onOpenICP}
@@ -121,7 +121,7 @@ export function ParallaxComponent({ onOpenICP }) {
         
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center relative z-10">
           
-          {/* Chamada Principal (Mobile First scaling) */}
+          {/* Chamada Principal */}
           <h2 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.15] mb-6 sm:mb-8">
             Clientes chegando todos os dias <br className="hidden sm:inline" />
             <span className="text-gradient-brand">sem depender de indicação.</span>
@@ -132,13 +132,12 @@ export function ParallaxComponent({ onOpenICP }) {
             Você já tem um bom produto e clientes que confiam em você. A gente estrutura sua presença digital e traz as pessoas certas, de forma previsível, para o seu site e o seu WhatsApp — para você parar de torcer pela indicação e passar a saber como vai fechar o mês.
           </p>
 
-          {/* Botões de Ação Mobile First */}
+          {/* Botões de Ação */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 w-full sm:w-auto mb-10 sm:mb-12">
             <button
               onClick={onOpenICP}
               className="btn-orange w-full sm:w-auto px-7 py-4 rounded-2xl font-extrabold text-sm sm:text-base shadow-2xl shadow-orange-500/30 flex items-center justify-center gap-2.5 cursor-pointer group active:scale-[0.98] transition-transform"
             >
-              <Sparkles className="w-5 h-5 text-orange-200" />
               <span>Fazer diagnóstico grátis</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
