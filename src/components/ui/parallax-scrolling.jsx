@@ -13,21 +13,21 @@ export function ParallaxComponent({ onOpenICP }) {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // TIMELINE DE SCROLL PINNADO (CONECTA A FOTO DIRETO AO '+' NUM ÚNICO SCROLL FLUIDO)
+      // TIMELINE DE SCROLL PINNADO (CONECTA A FOTO DIRETO AO '+' NUM ÚNICO SCROLL FLUIDO SEM BORDAS)
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: '[data-hero-pinned-wrapper]',
           start: 'top top',
-          end: '+=120%', // Distância de scroll perfeita e amaciada
-          scrub: 0.8,    // Acompanha a velocidade exata do scroll do usuário
-          pin: true,     // Trava a tela para fazer a transição conectada
+          end: '+=120%', // Distância de scroll fluida
+          scrub: 0.8,    // Acompanha o scroll do usuário
+          pin: true,     // Trava a tela para fazer a transição perfeita
           anticipatePin: 1
         }
       });
 
       // 1. A foto e o título encolhem e desvanecem suavemente enquanto você rola
       tl.to('[data-parallax-photo]', {
-        scale: isMobile ? 0.80 : 0.75,
+        scale: isMobile ? 0.85 : 0.80,
         opacity: 0.15,
         duration: 1,
         ease: 'power1.inOut'
@@ -64,16 +64,16 @@ export function ParallaxComponent({ onOpenICP }) {
       {/* ========================================================= */}
       <div data-hero-pinned-wrapper className="relative w-full h-screen overflow-hidden bg-[#080c19]">
         
-        {/* FOTO DO HERO DE FUNDO */}
-        <div className="absolute inset-0 w-full h-full z-0 overflow-hidden flex items-center justify-center">
+        {/* FOTO DO HERO FULL BLEED (SEM NENHUMA BORDA NAS LATERAIS) */}
+        <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <img 
             data-parallax-photo
             src={heroPhoto} 
             alt="Fundador Converte+ na Poltrona" 
-            className="w-full h-full object-cover [object-position:center_22%] sm:[object-position:center_24%] md:[object-position:center_20%] md:scale-[0.90] lg:scale-[0.88] transform-gpu filter contrast-[1.14] brightness-[0.96] saturate-[1.08] [image-rendering:-webkit-optimize-contrast] origin-center"
+            className="w-full h-full object-cover [object-position:center_22%] sm:[object-position:center_24%] md:[object-position:center_18%] lg:[object-position:center_16%] filter contrast-[1.14] brightness-[0.96] saturate-[1.08] [image-rendering:-webkit-optimize-contrast] origin-center"
           />
           
-          {/* Sombreamento para transição */}
+          {/* Sombreamento para transição suave */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#080c19]/40 via-transparent to-[#080c19]" />
           <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#080c19]/45" />
         </div>
@@ -82,7 +82,7 @@ export function ParallaxComponent({ onOpenICP }) {
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-between pt-20 pb-8 pointer-events-none">
           <div className="h-10"></div>
 
-          <div data-hero-title className="text-center px-4 max-w-7xl mx-auto flex flex-col items-center md:translate-y-20 lg:translate-y-24 origin-center pointer-events-auto">
+          <div data-hero-title className="text-center px-4 max-w-7xl mx-auto flex flex-col items-center md:translate-y-16 lg:translate-y-20 origin-center pointer-events-auto">
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white uppercase tracking-tight drop-shadow-[0_12px_35px_rgba(0,0,0,0.95)] select-none">
               CONVERTE<span className="text-orange-500">+</span>
             </h1>
