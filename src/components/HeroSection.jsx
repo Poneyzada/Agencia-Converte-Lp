@@ -61,47 +61,47 @@ export default function HeroSection({ onOpenICP }) {
 
           </div>
 
-          {/* Right Column: 3D Orbit Graphic ("A Rodinha com Nomes Girando") */}
+          {/* Right Column: 3D Orbit Graphic ("A Rodinha com Alinhamento Laser Simétrico") */}
           <div className="lg:col-span-5 flex items-center justify-center relative py-6 sm:py-10">
             
-            {/* Canvas da Rodinha com dimensões perfeitas para NUNCA cortar no mobile ou desktop */}
+            {/* Canvas da Rodinha com dimensões idênticas e simetria matemática */}
             <div className="relative w-[340px] h-[340px] sm:w-[400px] sm:h-[400px] lg:w-[440px] lg:h-[440px] flex items-center justify-center select-none scale-[0.92] sm:scale-100">
               
-              {/* Anéis Concêntricos da Rodinha */}
+              {/* Anéis Concêntricos */}
               <div className="absolute inset-2 sm:inset-4 rounded-full border border-white/10" />
-              <div className="absolute inset-8 sm:inset-10 rounded-full border border-dashed border-[#ff5823]/35" />
+              <div className="absolute inset-10 sm:inset-12 rounded-full border border-dashed border-[#ff5823]/35" />
               <div className="absolute inset-16 sm:inset-20 rounded-full border border-white/5" />
 
-              {/* Símbolo Central '+' Estático no Centro (Sem encostar nos nomes) */}
-              <div className="relative z-20 w-16 h-16 sm:w-22 sm:h-22 rounded-3xl bg-gradient-to-tr from-[#ff5823] to-[#ff7a4a] p-[2px] shadow-[0_0_50px_rgba(255,88,35,0.5)] animate-pulse-glow">
+              {/* Símbolo Central '+' Perfeitamente no Centro Geométrico */}
+              <div className="relative z-20 w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-gradient-to-tr from-[#ff5823] to-[#ff7a4a] p-[2px] shadow-[0_0_50px_rgba(255,88,35,0.5)] animate-pulse-glow">
                 <div className="w-full h-full bg-[#151821] rounded-[22px] flex items-center justify-center">
                   <Plus className="w-8 h-8 sm:w-10 sm:h-10 text-[#ff5823] stroke-[3.5]" />
                 </div>
               </div>
 
-              {/* ROTATING ORBIT CONTAINER: Os 4 NOMES RODAM CONTINUAMENTE AO REDOR DO '+' (Mobile e Desktop) */}
+              {/* ROTATING ORBIT CONTAINER: Os 4 NOMES RODAM CONTINUAMENTE COM ALINHAMENTO EIXO X E Y ZERADO */}
               <div className="absolute inset-0 z-30 animate-spin-slow motion-reduce:animate-none pointer-events-none">
                 
-                {/* Node 1: Top (Base Digital) */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 p-2 sm:p-2.5 px-3 sm:px-4 rounded-2xl bg-[#151821] border border-[#ff5823]/60 shadow-xl flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold text-white whitespace-nowrap">
+                {/* Node 1: Top (Base Digital - Alinhado no topo da órbita) */}
+                <div className="absolute top-1 left-1/2 -translate-x-1/2 h-8 sm:h-9 px-3 sm:px-4 rounded-2xl bg-[#151821] border border-[#ff5823]/60 shadow-xl flex items-center justify-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold text-white whitespace-nowrap">
                   <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ff5823]" />
                   <span>Base Digital</span>
                 </div>
 
-                {/* Node 2: Right (Meta & Google Ads - Empurrado para a borda externa longe do '+') */}
-                <div className="absolute top-1/2 -right-1 sm:right-0 -translate-y-1/2 p-2 sm:p-2.5 px-3 sm:px-4 rounded-2xl bg-[#151821] border border-[#ff5823]/60 shadow-xl flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold text-white whitespace-nowrap">
+                {/* Node 2: Right (Meta & Google Ads - Alinhado no centro vertical exato do eixo Eixo Y = 50%) */}
+                <div className="absolute top-1/2 right-1 -translate-y-1/2 h-8 sm:h-9 px-3 sm:px-4 rounded-2xl bg-[#151821] border border-[#ff5823]/60 shadow-xl flex items-center justify-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold text-white whitespace-nowrap">
                   <Target className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ff5823]" />
                   <span>Meta & Google</span>
                 </div>
 
-                {/* Node 3: Bottom (Branding Forte) */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 p-2 sm:p-2.5 px-3 sm:px-4 rounded-2xl bg-[#171920] border border-[#ff5823]/60 shadow-xl flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold text-white whitespace-nowrap">
+                {/* Node 3: Bottom (Branding Forte - Alinhado na base da órbita) */}
+                <div className="absolute bottom-1 left-1/2 -translate-x-1/2 h-8 sm:h-9 px-3 sm:px-4 rounded-2xl bg-[#151821] border border-[#ff5823]/60 shadow-xl flex items-center justify-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold text-white whitespace-nowrap">
                   <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ff5823]" />
                   <span>Branding Forte</span>
                 </div>
 
-                {/* Node 4: Left (Escala Previsível - Empurrado para a borda externa longe do '+') */}
-                <div className="absolute top-1/2 -left-1 sm:left-0 -translate-y-1/2 p-2 sm:p-2.5 px-3 sm:px-4 rounded-2xl bg-[#151821] border border-[#ff5823]/60 shadow-xl flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold text-white whitespace-nowrap">
+                {/* Node 4: Left (Escala Previsível - Alinhado no centro vertical exato do eixo Eixo Y = 50%) */}
+                <div className="absolute top-1/2 left-1 -translate-y-1/2 h-8 sm:h-9 px-3 sm:px-4 rounded-2xl bg-[#151821] border border-[#ff5823]/60 shadow-xl flex items-center justify-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold text-white whitespace-nowrap">
                   <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ff5823]" />
                   <span>Escala Previsível</span>
                 </div>
