@@ -224,7 +224,7 @@ export const siteConfig = {
   // Fundadores (Quem conduz)
   founders: [
     {
-      name: "Gabriel Silva",
+      name: "João Paulo",
       role: "Co-fundador & Estrategista de Tráfego",
       bio: "Cuido pessoalmente da arquitetura de tráfego, gestão de campanhas no Meta e Google Ads e acompanhamento de métricas para que cada investimento traga clientes qualificados com previsibilidade.",
       image: "converte+foto-hero.webp",
