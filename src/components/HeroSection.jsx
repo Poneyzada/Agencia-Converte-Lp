@@ -1,120 +1,118 @@
 import React from 'react';
-import { ArrowRight, Sparkles, ShieldCheck, CheckCircle2, TrendingUp, MessageSquare } from 'lucide-react';
-import heroPhoto from '../assets/converte+foto-hero.webp';
-import { siteConfig } from '../config/siteConfig';
+import { ArrowRight, Plus, Compass, Target, Award, TrendingUp, Sparkles } from 'lucide-react';
 
-export default function HeroSection({ onOpenICP, customHeroComponent: CustomHero }) {
-  if (CustomHero) {
-    return <CustomHero />;
-  }
-
+export default function HeroSection({ onOpenICP }) {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-[#080c19]">
+    <section className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center pt-24 pb-16 md:py-28 overflow-hidden bg-[#111216]">
+      
       {/* Background Radial Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-orange-500/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/3 right-5 w-[450px] h-[280px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/4 -translate-y-1/2 w-[35rem] h-[35rem] bg-orange-500/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[30rem] h-[30rem] bg-orange-500/5 rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        
+        {/* Grid 60 / 40 on Desktop */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* Left Hero Content */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left">
+          {/* Left Column (60% Desktop) - Text Copy & CTAs */}
+          <div className="lg:col-span-7 space-y-6 text-left">
             
-            {/* Pill Tag */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 backdrop-blur-md mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-orange-500 animate-ping" />
-              <span className="text-xs font-semibold uppercase tracking-wider text-orange-400">
-                Agência de Tráfego Pago & Branding
-              </span>
+            {/* Eyebrow */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-bold uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-orange-500" />
+              <span>Tráfego pago + branding para marcas que já vendem</span>
             </div>
 
-            {/* Headline matching screenshot */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] mb-6">
-              Clientes chegando todos os dias <br className="hidden sm:inline" />
-              <span className="text-gradient-brand">sem depender de indicação.</span>
+            {/* Headline (Maior elemento da página - 2ª linha em laranja sólido #ff5823) */}
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12]">
+              Clientes chegando todos os dias, <br />
+              <span className="text-[#ff5823]">sem depender de indicação.</span>
             </h1>
 
-            {/* Subheadline matching copy */}
-            <p className="text-base sm:text-lg text-gray-300 font-normal leading-relaxed mb-8 max-w-2xl">
-              Você já tem um bom produto e clientes que confiam em você. A gente estrutura sua presença digital e traz as pessoas certas, de forma previsível, para o seu site e o seu WhatsApp — para você parar de torcer pela indicação e passar a saber como vai fechar o mês.
+            {/* Subheadline */}
+            <p className="text-sm sm:text-base lg:text-lg text-gray-300 font-normal leading-relaxed max-w-2xl">
+              Você já tem um bom produto e clientes que confiam em você. A gente estrutura sua presença digital e traz as pessoas certas, de forma previsível, para o seu site e o seu WhatsApp.
             </p>
 
-            {/* CTA Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-10">
-              <button
-                onClick={onOpenICP}
-                className="btn-orange px-8 py-4 rounded-xl font-bold text-base shadow-xl shadow-orange-500/25 flex items-center justify-center gap-3 cursor-pointer group"
-              >
-                <Sparkles className="w-5 h-5 text-orange-200" />
-                <span>Fazer diagnóstico grátis</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+            {/* Action Buttons */}
+            <div className="pt-2 space-y-3">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+                <button
+                  onClick={onOpenICP}
+                  className="btn-orange w-full sm:w-auto px-7 py-4 rounded-2xl font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-2xl shadow-orange-500/30 cursor-pointer group active:scale-[0.98] transition-transform min-h-[44px]"
+                >
+                  <span>Fazer diagnóstico grátis</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
 
-              <a
-                href="#metodo"
-                className="px-6 py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 hover:text-white font-medium text-base text-center transition-all flex items-center justify-center gap-2"
-              >
-                Ver como funciona
-              </a>
-            </div>
+                <a
+                  href="#metodo"
+                  className="w-full sm:w-auto px-6 py-4 rounded-2xl bg-[#171920] hover:bg-[#1f222b] border border-white/15 text-white font-semibold text-xs sm:text-sm text-center transition-all flex items-center justify-center gap-2 min-h-[44px]"
+                >
+                  Ver como funciona
+                </a>
+              </div>
 
-            {/* 3 Horizontal Value Pills matching screenshot */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl pt-6 border-t border-white/10">
-              <div className="flex items-center gap-2 text-xs text-gray-300">
-                <CheckCircle2 className="w-4 h-4 text-orange-500 shrink-0" />
-                <span>Contas 100% no seu nome</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-gray-300">
-                <CheckCircle2 className="w-4 h-4 text-orange-500 shrink-0" />
-                <span>Sem contratos engessados</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-gray-300">
-                <CheckCircle2 className="w-4 h-4 text-orange-500 shrink-0" />
-                <span>Poucos clientes por vez</span>
-              </div>
+              {/* Microcopy sob os botões */}
+              <p className="text-[11px] sm:text-xs text-gray-400 font-medium">
+                5 perguntas. Resposta dos fundadores em até 24h. Sem compromisso.
+              </p>
             </div>
 
           </div>
 
-          {/* Right Column: Hero Photo Card */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
+          {/* Right Column (40% Desktop) - 3D Orbit Graphic */}
+          <div className="lg:col-span-5 flex items-center justify-center relative">
+            
+            <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 flex items-center justify-center select-none">
               
-              {/* Glow Frame */}
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-orange-500/30 to-amber-500/30 blur-xl opacity-70" />
+              {/* Outer Orbit Rings */}
+              <div className="absolute inset-0 rounded-full border border-white/10" />
+              <div className="absolute inset-6 sm:inset-8 rounded-full border border-dashed border-[#ff5823]/30 animate-spin-slow motion-reduce:animate-none" />
+              <div className="absolute inset-12 sm:inset-16 rounded-full border border-white/5" />
 
-              {/* Photo Card */}
-              <div className="relative rounded-3xl overflow-hidden glass-panel border border-white/15 shadow-2xl">
-                <div className="relative aspect-[4/4.5] w-full overflow-hidden bg-slate-900">
-                  <img
-                    src={heroPhoto}
-                    alt="Fundador Converte+"
-                    className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#080c19] via-transparent to-transparent opacity-80" />
-                </div>
-
-                {/* Floating Bottom Card */}
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-[#0e1529]/95 backdrop-blur-xl border border-white/15 flex items-center justify-between shadow-xl">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-orange-500/20 border border-orange-500/30 text-orange-500 flex items-center justify-center font-bold">
-                      <TrendingUp className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-gray-400 font-medium">Contatos no WhatsApp</div>
-                      <div className="text-sm font-bold text-white">Fluxo Diário & Previsível</div>
-                    </div>
-                  </div>
-                  <span className="text-[11px] font-bold text-orange-400 bg-orange-500/10 px-2.5 py-1 rounded-full border border-orange-500/20">
-                    Converte<span className="text-orange-500">+</span>
-                  </span>
+              {/* Center Glow Badge */}
+              <div className="relative z-10 w-20 h-20 sm:w-28 sm:h-28 rounded-3xl bg-gradient-to-tr from-[#ff5823] to-[#ff7a4a] p-[2px] shadow-[0_0_50px_rgba(255,88,35,0.4)] animate-pulse-glow">
+                <div className="w-full h-full bg-[#171920] rounded-[22px] flex items-center justify-center">
+                  <Plus className="w-10 h-10 sm:w-12 sm:h-12 text-[#ff5823] stroke-[3.5]" />
                 </div>
               </div>
 
+              {/* Orbiting Satellite Badges */}
+              <div className="absolute inset-0 animate-spin-slow motion-reduce:animate-none">
+                
+                {/* Node 1: Top (Base Digital) */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-2xl bg-[#171920] border border-orange-500/40 shadow-xl flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold text-white whitespace-nowrap">
+                  <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-400" />
+                  <span>Base Digital</span>
+                </div>
+
+                {/* Node 2: Right (Meta & Google Ads) */}
+                <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-2xl bg-[#171920] border border-orange-500/40 shadow-xl flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold text-white whitespace-nowrap">
+                  <Target className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-400" />
+                  <span>Meta & Google Ads</span>
+                </div>
+
+                {/* Node 3: Bottom (Branding Forte) */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 p-2 sm:p-3 rounded-2xl bg-[#171920] border border-orange-500/40 shadow-xl flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold text-white whitespace-nowrap">
+                  <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-400" />
+                  <span>Branding Forte</span>
+                </div>
+
+                {/* Node 4: Left (Escala Previsível) */}
+                <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-2xl bg-[#171920] border border-orange-500/40 shadow-xl flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold text-white whitespace-nowrap">
+                  <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-400" />
+                  <span>Escala Previsível</span>
+                </div>
+
+              </div>
+
             </div>
+
           </div>
 
         </div>
+
       </div>
     </section>
   );
