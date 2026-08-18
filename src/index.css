@@ -2,32 +2,33 @@
 
 @layer base {
   :root {
-    --bg-navy: #080c19;
-    --bg-navy-card: #0e1529;
+    --bg-dark: #111216;
+    --bg-card: #171920;
+    --bg-card-hover: #1f222b;
     --orange-primary: #ff5823;
     --orange-glow: rgba(255, 88, 35, 0.25);
   }
 
   body {
-    background-color: var(--bg-navy);
+    background-color: var(--bg-dark);
     color: #ffffff;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     overflow-x: hidden;
   }
 }
 
-/* Glassmorphism & Custom Control Room Panel Utilities */
+/* Glassmorphism & Custom Obsidian Charcoal Panel Utilities */
 .glass-panel {
-  background: rgba(14, 21, 41, 0.75);
+  background: rgba(23, 25, 32, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-pill {
-  background: rgba(14, 21, 41, 0.9);
+  background: rgba(23, 25, 32, 0.9);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 60px;
 }
 
@@ -36,19 +37,18 @@
 }
 
 .text-gradient-brand {
-  background: linear-gradient(135deg, #ffffff 0%, #ff855b 50%, #ff5823 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ff5823;
 }
 
 .btn-orange {
-  background: linear-gradient(135deg, #ff5823 0%, #ff7343 100%);
+  background: #ff5823;
   color: #ffffff;
   border-radius: 30px;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-orange:hover {
+  background: #ff6838;
   box-shadow: 0 0 30px rgba(255, 88, 35, 0.5);
   transform: translateY(-2px);
 }
@@ -62,32 +62,14 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #080c19;
+  background: #111216;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #252833;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #ff5823;
-}
-
-/* 21st.dev Osmo Parallax Styles */
-.parallax__header {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.parallax__header__title {
-  position: relative;
-  z-index: 2;
-  text-transform: uppercase;
-  color: #ffffff;
 }
 
 /* Continuous pulse animation for '+' icons */

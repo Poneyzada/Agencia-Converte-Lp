@@ -26,7 +26,7 @@ export default function App() {
   const handleCloseCRM = () => setCrmModalOpen(false);
 
   return (
-    <div className="min-h-screen bg-[#080c19] text-gray-100 flex flex-col font-sans selection:bg-orange-500 selection:text-white">
+    <div className="min-h-screen bg-[#111216] text-gray-100 flex flex-col font-sans selection:bg-orange-500 selection:text-white">
       
       {/* Main Header Navbar */}
       <Header onOpenICP={handleOpenICP} />

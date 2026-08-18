@@ -18,9 +18,9 @@ export function ParallaxComponent({ onOpenICP }) {
         scrollTrigger: {
           trigger: '[data-hero-pinned-wrapper]',
           start: 'top top',
-          end: '+=120%', // Distância de scroll fluida
-          scrub: 0.8,    // Acompanha o scroll do usuário
-          pin: true,     // Trava a tela para fazer a transição perfeita
+          end: '+=120%',
+          scrub: 0.8,
+          pin: true,
           anticipatePin: 1
         }
       });
@@ -57,14 +57,14 @@ export function ParallaxComponent({ onOpenICP }) {
   }, [isMobile]);
 
   return (
-    <div ref={containerRef} className="relative w-full bg-[#080c19]">
+    <div ref={containerRef} className="relative w-full bg-[#111216]">
       
       {/* ========================================================= */}
       {/* SEÇÃO WRAPPER PINNADA DO HERO AO SÍMBOLO DE "+"           */}
       {/* ========================================================= */}
-      <div data-hero-pinned-wrapper className="relative w-full h-screen overflow-hidden bg-[#080c19]">
+      <div data-hero-pinned-wrapper className="relative w-full h-screen overflow-hidden bg-[#111216]">
         
-        {/* FOTO ORIGINAL ORIGINALMENTE EM 153.5KB RESTAURADA EM QUALIDADE MÁXIMA */}
+        {/* FOTO ORIGINAL RESTAURADA EM QUALIDADE MÁXIMA */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <img 
             data-parallax-photo
@@ -73,9 +73,9 @@ export function ParallaxComponent({ onOpenICP }) {
             className="w-full h-full object-cover [object-position:center_22%] filter contrast-105 brightness-95 origin-center"
           />
           
-          {/* Sombreamento degradê original que esfumaça perfeitamente para o fundo escuro */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#080c19]/40 via-transparent to-[#080c19]" />
-          <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#080c19]/50" />
+          {/* Sombreamento degradê que esfumaça perfeitamente para o fundo grafite carvão #111216 */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#111216]/40 via-transparent to-[#111216]" />
+          <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#111216]/50" />
         </div>
 
         {/* TÍTULO CONVERTE+ */}
@@ -84,7 +84,7 @@ export function ParallaxComponent({ onOpenICP }) {
 
           <div data-hero-title className="text-center px-4 max-w-7xl mx-auto flex flex-col items-center origin-center pointer-events-auto">
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white uppercase tracking-tight drop-shadow-[0_12px_35px_rgba(0,0,0,0.95)] select-none">
-              CONVERTE<span className="text-orange-500">+</span>
+              CONVERTE<span className="text-[#ff5823]">+</span>
             </h1>
           </div>
 
@@ -93,7 +93,7 @@ export function ParallaxComponent({ onOpenICP }) {
               className="flex flex-col items-center gap-1 text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest text-gray-200 animate-bounce cursor-pointer bg-black/60 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border border-white/15 backdrop-blur-md hover:bg-black/80 transition-colors shadow-2xl" 
             >
               <span>Role para continuar</span>
-              <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500" />
+              <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-[#ff5823]" />
             </div>
           </div>
         </div>
@@ -103,7 +103,7 @@ export function ParallaxComponent({ onOpenICP }) {
           <div 
             data-plus-symbol
             onClick={onOpenICP}
-            className="cursor-pointer pointer-events-auto select-none text-orange-500 font-black text-8xl sm:text-[16rem] lg:text-[22rem] leading-none drop-shadow-[0_0_80px_rgba(255,88,35,0.8)] hover:scale-110 transition-transform duration-300 animate-float"
+            className="cursor-pointer pointer-events-auto select-none text-[#ff5823] font-black text-8xl sm:text-[16rem] lg:text-[22rem] leading-none drop-shadow-[0_0_80px_rgba(255,88,35,0.8)] hover:scale-110 transition-transform duration-300 animate-float"
           >
             +
           </div>
@@ -115,14 +115,14 @@ export function ParallaxComponent({ onOpenICP }) {
       {/* ========================================================= */}
       {/* 3. MAIN COPY & CONVERSION BUTTONS SECTION            */}
       {/* ========================================================= */}
-      <section className="relative w-full py-16 sm:py-24 lg:py-32 bg-[#080c19] overflow-hidden border-t border-white/5">
+      <section className="relative w-full py-16 sm:py-24 lg:py-32 bg-[#111216] overflow-hidden border-t border-white/5">
         
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center relative z-10">
           
-          {/* Chamada Principal */}
+          {/* Chamada Principal com destaque na 2ª linha */}
           <h2 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.15] mb-6 sm:mb-8">
             Clientes chegando todos os dias <br className="hidden sm:inline" />
-            <span className="text-gradient-brand">sem depender de indicação.</span>
+            <span className="text-[#ff5823]">sem depender de indicação.</span>
           </h2>
 
           {/* Texto Explicativo da Copy */}
@@ -142,24 +142,24 @@ export function ParallaxComponent({ onOpenICP }) {
 
             <a
               href="#metodo"
-              className="w-full sm:w-auto px-6 py-4 rounded-2xl bg-[#0e1529] hover:bg-[#141e38] backdrop-blur-md border border-white/20 text-white font-semibold text-sm sm:text-base text-center transition-all flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-6 py-4 rounded-2xl bg-[#171920] hover:bg-[#1f222b] backdrop-blur-md border border-white/15 text-white font-semibold text-sm sm:text-base text-center transition-all flex items-center justify-center gap-2"
             >
               Ver como funciona
             </a>
           </div>
 
           {/* 3 Pills Horizontais */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 w-full max-w-3xl pt-6 sm:pt-8 border-t border-white/15">
-            <div className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm text-gray-200 font-medium">
-              <CheckCircle2 className="w-4 h-4 text-orange-500 shrink-0" />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 w-full max-w-3xl pt-6 sm:pt-8 border-t border-white/10">
+            <div className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-white/5 border border-white/5 text-xs sm:text-sm text-gray-200 font-medium">
+              <CheckCircle2 className="w-4 h-4 text-[#ff5823] shrink-0" />
               <span>Contas 100% no seu nome</span>
             </div>
-            <div className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm text-gray-200 font-medium">
-              <CheckCircle2 className="w-4 h-4 text-orange-500 shrink-0" />
+            <div className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-white/5 border border-white/5 text-xs sm:text-sm text-gray-200 font-medium">
+              <CheckCircle2 className="w-4 h-4 text-[#ff5823] shrink-0" />
               <span>Sem contratos engessados</span>
             </div>
-            <div className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm text-gray-200 font-medium">
-              <CheckCircle2 className="w-4 h-4 text-orange-500 shrink-0" />
+            <div className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-white/5 border border-white/5 text-xs sm:text-sm text-gray-200 font-medium">
+              <CheckCircle2 className="w-4 h-4 text-[#ff5823] shrink-0" />
               <span>Poucos clientes por vez</span>
             </div>
           </div>

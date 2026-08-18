@@ -115,10 +115,10 @@ export default function ICPModal({ isOpen, onClose, whatsappNumber }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl animate-in fade-in duration-200">
       
       {/* Modal Card */}
-      <div className="relative w-full max-w-lg glass-panel bg-[#0e1529]/95 border border-white/20 rounded-3xl shadow-2xl p-6 sm:p-8 overflow-hidden">
+      <div className="relative w-full max-w-lg glass-panel bg-[#171920]/95 border border-white/15 rounded-3xl shadow-2xl p-6 sm:p-8 overflow-hidden">
         
         {/* Glow halo background */}
         <div className="absolute top-0 right-0 w-40 h-40 bg-orange-500/10 rounded-full blur-2xl pointer-events-none" />
@@ -154,7 +154,7 @@ export default function ICPModal({ isOpen, onClose, whatsappNumber }) {
             {/* Progress bar */}
             <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
               <div 
-                className="bg-gradient-to-r from-orange-500 to-amber-500 h-full transition-all duration-300"
+                className="bg-[#ff5823] h-full transition-all duration-300"
                 style={{ width: `${((currentStep + 1) / questions.length) * 100}%` }}
               />
             </div>
@@ -180,13 +180,13 @@ export default function ICPModal({ isOpen, onClose, whatsappNumber }) {
                     onClick={() => handleSelectOption(questions[currentStep].id, option.value)}
                     className={`w-full p-3.5 rounded-2xl text-left text-xs font-semibold transition-all duration-200 border flex items-center justify-between cursor-pointer ${
                       isSelected
-                        ? 'bg-orange-500/20 border-orange-500 text-white shadow-md shadow-orange-500/10'
+                        ? 'bg-orange-500/20 border-[#ff5823] text-white shadow-md shadow-orange-500/10'
                         : 'bg-white/5 border-white/10 hover:border-orange-500/40 text-gray-200 hover:bg-white/10'
                     }`}
                   >
                     <span>{option.label}</span>
                     <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
-                      isSelected ? 'border-orange-500 bg-orange-500' : 'border-white/30'
+                      isSelected ? 'border-[#ff5823] bg-[#ff5823]' : 'border-white/30'
                     }`}>
                       {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
                     </div>
@@ -200,7 +200,7 @@ export default function ICPModal({ isOpen, onClose, whatsappNumber }) {
               <div className="pt-2">
                 <button
                   onClick={() => setCurrentStep(prev => prev - 1)}
-                  className="text-xs text-gray-400 hover:text-white flex items-center gap-1 transition-colors"
+                  className="text-xs text-gray-400 hover:text-white flex items-center gap-1 transition-colors cursor-pointer"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
                   <span>Voltar para pergunta anterior</span>
@@ -242,7 +242,7 @@ export default function ICPModal({ isOpen, onClose, whatsappNumber }) {
                     placeholder="Ex: Roberto Silva"
                     value={answers.nome}
                     onChange={(e) => setAnswers(prev => ({ ...prev, nome: e.target.value }))}
-                    className="w-full pl-9 pr-3 py-2.5 rounded-xl glass-input text-white text-xs"
+                    className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-xs focus:outline-none focus:border-[#ff5823]"
                   />
                 </div>
               </div>
@@ -259,7 +259,7 @@ export default function ICPModal({ isOpen, onClose, whatsappNumber }) {
                     placeholder="roberto@suaempresa.com.br"
                     value={answers.email}
                     onChange={(e) => setAnswers(prev => ({ ...prev, email: e.target.value }))}
-                    className="w-full pl-9 pr-3 py-2.5 rounded-xl glass-input text-white text-xs"
+                    className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-xs focus:outline-none focus:border-[#ff5823]"
                   />
                 </div>
               </div>
@@ -276,7 +276,7 @@ export default function ICPModal({ isOpen, onClose, whatsappNumber }) {
                     placeholder="(11) 99999-9999"
                     value={answers.telefone}
                     onChange={handlePhoneChange}
-                    className="w-full pl-9 pr-3 py-2.5 rounded-xl glass-input text-white text-xs"
+                    className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-xs focus:outline-none focus:border-[#ff5823]"
                   />
                 </div>
               </div>
@@ -286,7 +286,7 @@ export default function ICPModal({ isOpen, onClose, whatsappNumber }) {
               <button
                 type="button"
                 onClick={() => setCurrentStep(questions.length - 1)}
-                className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white text-xs font-medium flex items-center justify-center gap-1.5"
+                className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white text-xs font-medium flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 <span>Voltar</span>
@@ -350,7 +350,7 @@ export default function ICPModal({ isOpen, onClose, whatsappNumber }) {
 
               <button
                 onClick={handleReset}
-                className="w-full sm:w-auto px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white text-xs font-medium flex items-center justify-center gap-1.5"
+                className="w-full sm:w-auto px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white text-xs font-medium flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
                 <span>Refazer</span>
