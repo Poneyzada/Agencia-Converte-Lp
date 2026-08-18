@@ -6,40 +6,40 @@ export default function HeroSection({ onOpenICP }) {
   return (
     <section className="relative z-0 flex min-h-[92vh] lg:min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#0e1015] pt-28 pb-16 lg:py-32">
       
-      {/* 21st.dev Efeito Studio Light: O cone sobe suavemente enquanto a luz ilumina o ambiente */}
-      <div className="absolute top-0 isolate z-0 flex w-screen flex-1 items-start justify-center pointer-events-none">
+      {/* 21st.dev Studio Lamp Light - Otimizado para alta legibilidade no Mobile (Sem nuvem alaranjada no topo) */}
+      <div className="absolute top-0 isolate z-0 hidden md:flex w-screen flex-1 items-start justify-center pointer-events-none">
         
-        {/* Backdrop blur suave */}
-        <div className="absolute top-0 z-50 h-48 w-screen bg-transparent opacity-10 backdrop-blur-md" />
+        {/* Backdrop blur */}
+        <div className="absolute top-0 z-50 h-36 w-screen bg-transparent opacity-10 backdrop-blur-md" />
 
-        {/* Ambient Glow principal da luz do studio acendendo */}
+        {/* Ambient Glow principal suavizado no desktop */}
         <motion.div
           initial={{ opacity: 0, scale: 0.7, y: 30 }}
-          animate={{ opacity: 0.85, scale: 1, y: 0 }}
+          animate={{ opacity: 0.5, scale: 1, y: 0 }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-          className="absolute inset-auto z-50 h-44 w-[32rem] -translate-y-[-20%] rounded-full bg-[#ff5823]/60 opacity-80 blur-3xl"
+          className="absolute inset-auto z-50 h-36 w-[28rem] -translate-y-[-20%] rounded-full bg-[#ff5823]/40 blur-3xl"
         />
 
-        {/* Lamp Light Core Motion acendendo como foco de luz */}
+        {/* Lamp Light Core Motion */}
         <motion.div
           initial={{ width: "8rem", opacity: 0.2, y: 20 }}
-          animate={{ width: "20rem", opacity: 1, y: 0 }}
+          animate={{ width: "18rem", opacity: 0.8, y: 0 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="absolute top-0 z-30 h-40 -translate-y-[15%] rounded-full bg-[#ff5823]/70 blur-2xl"
+          className="absolute top-0 z-30 h-32 -translate-y-[15%] rounded-full bg-[#ff5823]/40 blur-2xl"
         />
 
-        {/* Linha de luz no topo expandindo */}
+        {/* Linha de luz no topo */}
         <motion.div
           initial={{ width: "10rem", opacity: 0 }}
-          animate={{ width: "34rem", opacity: 1 }}
+          animate={{ width: "28rem", opacity: 0.8 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
-          className="absolute inset-auto z-50 h-0.5 -translate-y-[-10%] bg-[#ff5823]"
+          className="absolute inset-auto z-50 h-0.5 -translate-y-[-10%] bg-[#ff5823]/80"
         />
 
-        {/* Cone Esquerdo de Luz subindo e abrindo */}
+        {/* Cone Esquerdo de Luz */}
         <motion.div
           initial={{ opacity: 0, width: "12rem", y: 40 }}
-          animate={{ opacity: 0.95, width: "32rem", y: 0 }}
+          animate={{ opacity: 0.6, width: "28rem", y: 0 }}
           transition={{
             delay: 0.2,
             duration: 1.3,
@@ -48,16 +48,16 @@ export default function HeroSection({ onOpenICP }) {
           style={{
             backgroundImage: `conic-gradient(var(--conic-position), var(--tw-gradient-stops))`,
           }}
-          className="absolute inset-auto right-1/2 h-64 overflow-visible w-[32rem] bg-gradient-conic from-[#ff5823]/60 via-transparent to-transparent [--conic-position:from_70deg_at_center_top]"
+          className="absolute inset-auto right-1/2 h-56 overflow-visible w-[28rem] bg-gradient-conic from-[#ff5823]/40 via-transparent to-transparent [--conic-position:from_70deg_at_center_top]"
         >
-          <div className="absolute w-[100%] left-0 bg-[#0e1015] h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
-          <div className="absolute w-40 h-[100%] left-0 bg-[#0e1015] bottom-0 z-20 [mask-image:linear-gradient(to_right,white,transparent)]" />
+          <div className="absolute w-[100%] left-0 bg-[#0e1015] h-36 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
+          <div className="absolute w-36 h-[100%] left-0 bg-[#0e1015] bottom-0 z-20 [mask-image:linear-gradient(to_right,white,transparent)]" />
         </motion.div>
 
-        {/* Cone Direito de Luz subindo e abrindo */}
+        {/* Cone Direito de Luz */}
         <motion.div
           initial={{ opacity: 0, width: "12rem", y: 40 }}
-          animate={{ opacity: 0.95, width: "32rem", y: 0 }}
+          animate={{ opacity: 0.6, width: "28rem", y: 0 }}
           transition={{
             delay: 0.2,
             duration: 1.3,
@@ -66,12 +66,15 @@ export default function HeroSection({ onOpenICP }) {
           style={{
             backgroundImage: `conic-gradient(var(--conic-position), var(--tw-gradient-stops))`,
           }}
-          className="absolute inset-auto left-1/2 h-64 w-[32rem] bg-gradient-conic from-transparent via-transparent to-[#ff5823]/60 [--conic-position:from_290deg_at_center_top]"
+          className="absolute inset-auto left-1/2 h-56 w-[28rem] bg-gradient-conic from-transparent via-transparent to-[#ff5823]/40 [--conic-position:from_290deg_at_center_top]"
         >
-          <div className="absolute w-40 h-[100%] right-0 bg-[#0e1015] bottom-0 z-20 [mask-image:linear-gradient(to_left,white,transparent)]" />
-          <div className="absolute w-[100%] right-0 bg-[#0e1015] h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
+          <div className="absolute w-36 h-[100%] right-0 bg-[#0e1015] bottom-0 z-20 [mask-image:linear-gradient(to_left,white,transparent)]" />
+          <div className="absolute w-[100%] right-0 bg-[#0e1015] h-36 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
         </motion.div>
       </div>
+
+      {/* Mobile Subtle Ambient Glow (Ultra limpo e sem estourar contraste) */}
+      <div className="md:hidden absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* Main Content Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -82,18 +85,18 @@ export default function HeroSection({ onOpenICP }) {
           {/* Main Hero Copy (Left Column) */}
           <div className="lg:col-span-7 space-y-6 text-left relative z-10">
             
-            {/* Eyebrow Badge subindo em sincronia com o acendimento da luz */}
+            {/* Eyebrow Badge com Alto Contraste (Texto Claro com ícone Laranja Converte+) */}
             <motion.div 
               initial={{ y: 35, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-bold uppercase tracking-wider shadow-[0_0_25px_rgba(255,88,35,0.2)]"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#151821] border border-white/15 text-gray-200 text-[11px] sm:text-xs font-bold uppercase tracking-wider shadow-lg"
             >
-              <Sparkles className="w-3.5 h-3.5 text-orange-500 shrink-0" />
+              <Sparkles className="w-4 h-4 text-[#ff5823] shrink-0" />
               <span>Tráfego pago + branding para marcas que já vendem</span>
             </motion.div>
 
-            {/* Headline subindo suavemente acompanhando a iluminação do estúdio */}
+            {/* Headline */}
             <motion.h1 
               initial={{ y: 45, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -104,7 +107,7 @@ export default function HeroSection({ onOpenICP }) {
               <span className="text-[#ff5823]">sem depender de indicação.</span>
             </motion.h1>
 
-            {/* Subheadline subindo em cascata */}
+            {/* Subheadline */}
             <motion.p 
               initial={{ y: 45, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -114,7 +117,7 @@ export default function HeroSection({ onOpenICP }) {
               Você já tem um bom produto e clientes que confiam em você. A gente estrutura sua presença digital e traz as pessoas certas, de forma previsível, para o seu site e o seu WhatsApp.
             </motion.p>
 
-            {/* Action Buttons subindo em cascata */}
+            {/* Action Buttons */}
             <motion.div 
               initial={{ y: 45, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -146,7 +149,7 @@ export default function HeroSection({ onOpenICP }) {
 
           </div>
 
-          {/* Right Column: 3D Orbit Graphic ("A Rodinha com Iluminação Studio Light") */}
+          {/* Right Column: 3D Orbit Graphic ("A Rodinha com Iluminação Clean") */}
           <motion.div 
             initial={{ scale: 0.88, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
