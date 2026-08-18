@@ -17,24 +17,24 @@ export default function HeroSection({ onOpenICP }) {
           <div className="lg:col-span-7 space-y-6 text-left">
             
             {/* Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-400 text-xs font-bold uppercase tracking-wider shadow-sm">
+            <div className="animate-fade-in-up inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-400 text-xs font-bold uppercase tracking-wider shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-orange-500 shrink-0" />
               <span>Tráfego pago + branding para marcas que já vendem</span>
             </div>
 
-            {/* Headline (2ª linha em laranja sólido #ff5823) */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12]">
+            {/* Headline com Animação de Entrada Elegante ao Carregar */}
+            <h1 className="animate-fade-in-up text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12]">
               Clientes chegando todos os dias, <br />
               <span className="text-[#ff5823]">sem depender de indicação.</span>
             </h1>
 
-            {/* Subheadline */}
-            <p className="text-sm sm:text-base lg:text-lg text-gray-300 font-normal leading-relaxed max-w-2xl">
+            {/* Subheadline com Animação em Cascata */}
+            <p className="animate-fade-in-up-delayed text-sm sm:text-base lg:text-lg text-gray-300 font-normal leading-relaxed max-w-2xl">
               Você já tem um bom produto e clientes que confiam em você. A gente estrutura sua presença digital e traz as pessoas certas, de forma previsível, para o seu site e o seu WhatsApp.
             </p>
 
             {/* Action Buttons */}
-            <div className="pt-2 space-y-3">
+            <div className="animate-fade-in-up-delayed pt-2 space-y-3">
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
                 <button
                   onClick={onOpenICP}
@@ -60,10 +60,10 @@ export default function HeroSection({ onOpenICP }) {
 
           </div>
 
-          {/* Right Column: 3D Orbit Graphic ("A Rodinha com afastamento perfeito dos nomes") */}
+          {/* Right Column: 3D Orbit Graphic ("A Rodinha") */}
           <div className="lg:col-span-5 flex items-center justify-center relative py-6 sm:py-10">
             
-            {/* Canvas da Rodinha com dimensões idênticas e simetria matemática */}
+            {/* Canvas da Rodinha */}
             <div className="relative w-[340px] h-[340px] sm:w-[400px] sm:h-[400px] lg:w-[440px] lg:h-[440px] flex items-center justify-center select-none scale-[0.92] sm:scale-100">
               
               {/* Anéis Concêntricos */}
@@ -71,14 +71,14 @@ export default function HeroSection({ onOpenICP }) {
               <div className="absolute inset-10 sm:inset-12 rounded-full border border-dashed border-[#ff5823]/35" />
               <div className="absolute inset-16 sm:inset-20 rounded-full border border-white/5" />
 
-              {/* Símbolo Central '+' Perfeitamente no Centro Geométrico */}
+              {/* Símbolo Central '+' */}
               <div className="relative z-20 w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-gradient-to-tr from-[#ff5823] to-[#ff7a4a] p-[2px] shadow-[0_0_40px_rgba(255,88,35,0.45)]">
                 <div className="w-full h-full bg-[#151821] rounded-[22px] flex items-center justify-center">
                   <Plus className="w-8 h-8 sm:w-10 sm:h-10 text-[#ff5823] stroke-[3.5]" />
                 </div>
               </div>
 
-              {/* ROTATING ORBIT CONTAINER: Os 4 NOMES RODAM CONTINUAMENTE LIGEIRAMENTE MAIS PARA FORA */}
+              {/* ROTATING ORBIT CONTAINER */}
               <div className="absolute inset-0 z-30 animate-spin-slow motion-reduce:animate-none pointer-events-none">
                 
                 {/* Node 1: Top (Base Digital) */}
@@ -87,7 +87,7 @@ export default function HeroSection({ onOpenICP }) {
                   <span>Base Digital</span>
                 </div>
 
-                {/* Node 2: Right (Meta & Google Ads - Afastado levemente para fora) */}
+                {/* Node 2: Right (Meta & Google Ads) */}
                 <div className="absolute top-1/2 -right-3 sm:-right-5 -translate-y-1/2 h-8 sm:h-9 px-3 sm:px-4 rounded-2xl bg-[#151821] border border-[#ff5823]/60 shadow-xl flex items-center justify-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold text-white whitespace-nowrap">
                   <Target className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ff5823]" />
                   <span>Meta & Google</span>
@@ -99,7 +99,7 @@ export default function HeroSection({ onOpenICP }) {
                   <span>Branding Forte</span>
                 </div>
 
-                {/* Node 4: Left (Escala Previsível - Afastado levemente para fora) */}
+                {/* Node 4: Left (Escala Previsível) */}
                 <div className="absolute top-1/2 -left-3 sm:-left-5 -translate-y-1/2 h-8 sm:h-9 px-3 sm:px-4 rounded-2xl bg-[#151821] border border-[#ff5823]/60 shadow-xl flex items-center justify-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold text-white whitespace-nowrap">
                   <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ff5823]" />
                   <span>Escala Previsível</span>

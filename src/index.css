@@ -59,6 +59,27 @@
   transform: scale(0.98);
 }
 
+/* Entrance Animations for Hero Headline */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-up-delayed {
+  animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  opacity: 0;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
