@@ -231,7 +231,7 @@ export const siteConfig = {
       specialties: ["Gestão de Meta Ads & Google Ads", "Web Analytics & Funis de Conversão"]
     },
     {
-      name: "Isabela Costa",
+      name: "Isabela Laud",
       role: "Co-fundadora & Diretora de Branding",
       bio: "Estruturo o posicionamento visual, copywriting e roteiros estratégicos da sua marca para garantir que sua empresa transmita autoridade e converta os visitantes em compradores.",
       image: "converte+isabela.webp",
