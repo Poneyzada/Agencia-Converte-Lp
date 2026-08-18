@@ -2,38 +2,38 @@
 
 @layer base {
   :root {
-    --bg-dark: #111216;
-    --bg-card: #171920;
-    --bg-card-hover: #1f222b;
+    --bg-dark: #0e1015;
+    --bg-card: #151821;
+    --bg-card-hover: #1c202c;
     --orange-primary: #ff5823;
-    --orange-glow: rgba(255, 88, 35, 0.25);
+    --orange-glow: rgba(255, 88, 35, 0.3);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     background-color: var(--bg-dark);
-    color: #ffffff;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #f3f4f6;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     overflow-x: hidden;
   }
 }
 
-/* Glassmorphism & Custom Obsidian Charcoal Panel Utilities */
+/* Glassmorphism & Obsidian Dark Panel Utilities */
 .glass-panel {
-  background: rgba(23, 25, 32, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(21, 24, 33, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.glass-pill {
-  background: rgba(23, 25, 32, 0.9);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 60px;
-}
-
-.pill-card {
-  border-radius: 30px;
+.glass-panel:hover {
+  border-color: rgba(255, 88, 35, 0.35);
 }
 
 .text-gradient-brand {
@@ -41,47 +41,63 @@
 }
 
 .btn-orange {
-  background: #ff5823;
+  background: linear-gradient(135deg, #ff5823 0%, #ff6b38 100%);
   color: #ffffff;
-  border-radius: 30px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-orange:hover {
-  background: #ff6838;
-  box-shadow: 0 0 30px rgba(255, 88, 35, 0.5);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, #ff6835 0%, #ff7b4b 100%);
+  box-shadow: 0 0 35px rgba(255, 88, 35, 0.45);
+  transform: translateY(-1px);
 }
 
-.glow-halo {
-  box-shadow: 0 0 50px rgba(255, 88, 35, 0.22);
+.btn-orange:active {
+  transform: scale(0.98);
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #111216;
+  background: #0e1015;
 }
 ::-webkit-scrollbar-thumb {
-  background: #252833;
+  background: #252834;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #ff5823;
 }
 
-/* Continuous pulse animation for '+' icons */
+/* Continuous pulse animation for center '+' icon */
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 25px rgba(255, 88, 35, 0.4);
+    box-shadow: 0 0 30px rgba(255, 88, 35, 0.35);
   }
   50% {
-    box-shadow: 0 0 50px rgba(255, 88, 35, 0.8);
+    box-shadow: 0 0 60px rgba(255, 88, 35, 0.7);
   }
 }
 
 .animate-pulse-glow {
   animation: pulseGlow 3s infinite ease-in-out;
+}
+
+/* Subtle spin animation for dashed orbit */
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 60s linear infinite;
 }
