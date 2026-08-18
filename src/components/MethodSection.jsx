@@ -1,19 +1,10 @@
-import React, { useState } from 'react';
-import { CheckCircle2, ChevronRight, ChevronLeft, Sparkles, Compass, Target, Award, TrendingUp } from 'lucide-react';
+import React from 'react';
+import { CheckCircle2, Sparkles, Compass, Target, Award, TrendingUp } from 'lucide-react';
 import { siteConfig } from '../config/siteConfig';
 
 export default function MethodSection({ onOpenICP }) {
-  const [currentStep, setCurrentStep] = useState(0);
-  const pillars = siteConfig.pillars;
+  const pillars = siteConfig.pillars || [];
   const icons = [Compass, Target, Award, TrendingUp];
-
-  const handlePrev = () => {
-    setCurrentStep((prev) => (prev > 0 ? prev - 1 : pillars.length - 1));
-  };
-
-  const handleNext = () => {
-    setCurrentStep((prev) => (prev < pillars.length - 1 ? prev + 1 : 0));
-  };
 
   return (
     <section id="metodo" className="py-20 sm:py-28 relative bg-[#111216] overflow-hidden border-t border-white/5">
@@ -43,6 +34,7 @@ export default function MethodSection({ onOpenICP }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {pillars.map((pillar, idx) => {
             const IconComp = icons[idx] || Sparkles;
+            const itemsList = pillar.bullets || pillar.features || [];
 
             return (
               <div
@@ -80,12 +72,12 @@ export default function MethodSection({ onOpenICP }) {
                   </p>
                 </div>
 
-                {/* 2 Bullets with Check */}
+                {/* Bullets with Check */}
                 <div className="space-y-2 pt-3 border-t border-white/10">
-                  {pillar.bullets.map((bullet, bIdx) => (
+                  {itemsList.map((item, bIdx) => (
                     <div key={bIdx} className="flex items-start gap-2 text-xs text-gray-200">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#ff5823] shrink-0 mt-0.5" />
-                      <span className="leading-snug">{bullet}</span>
+                      <span className="leading-snug">{item}</span>
                     </div>
                   ))}
                 </div>

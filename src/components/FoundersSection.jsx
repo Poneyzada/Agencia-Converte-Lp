@@ -5,7 +5,7 @@ import gabrielPhoto from '../assets/converte+foto-hero.webp';
 import isabelaPhoto from '../assets/converte+isabela.webp';
 
 export default function FoundersSection({ onOpenICP }) {
-  const founders = siteConfig.founders;
+  const founders = siteConfig.founders || [];
   const founderImages = [gabrielPhoto, isabelaPhoto];
 
   return (
@@ -37,6 +37,8 @@ export default function FoundersSection({ onOpenICP }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
           {founders.map((founder, idx) => {
             const photoSrc = founderImages[idx] || gabrielPhoto;
+            const skillsList = founder.specialties || founder.skills || [];
+            const bioText = founder.bio || founder.description || "";
 
             return (
               <div
@@ -68,15 +70,15 @@ export default function FoundersSection({ onOpenICP }) {
 
                   {/* 1st Person Bio */}
                   <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal">
-                    "{founder.bio}"
+                    "{bioText}"
                   </p>
 
-                  {/* 2 Bullets de Especialidade */}
+                  {/* Bullets de Especialidade */}
                   <div className="space-y-2 pt-3 border-t border-white/10">
                     <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block font-mono">
                       Especialidades:
                     </span>
-                    {founder.specialties.map((spec, sIdx) => (
+                    {skillsList.map((spec, sIdx) => (
                       <div key={sIdx} className="flex items-center gap-2 text-xs text-gray-200">
                         <CheckCircle2 className="w-3.5 h-3.5 text-[#ff5823] shrink-0" />
                         <span>{spec}</span>
