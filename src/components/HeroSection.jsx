@@ -4,64 +4,69 @@ import { ArrowRight, Plus, Compass, Target, Award, TrendingUp, Sparkles } from '
 
 export default function HeroSection({ onOpenICP }) {
   return (
-    <section className="relative z-0 flex min-h-[90vh] lg:min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#0e1015] pt-28 pb-16 lg:py-32">
+    <section className="relative z-0 flex min-h-[92vh] lg:min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#0e1015] pt-28 pb-16 lg:py-32">
       
-      {/* 21st.dev Lamp / Conic Glow Effect Background */}
+      {/* 21st.dev Efeito Studio Light: O cone sobe suavemente enquanto a luz ilumina o ambiente */}
       <div className="absolute top-0 isolate z-0 flex w-screen flex-1 items-start justify-center pointer-events-none">
+        
+        {/* Backdrop blur suave */}
         <div className="absolute top-0 z-50 h-48 w-screen bg-transparent opacity-10 backdrop-blur-md" />
 
-        {/* Main Glow em tom de Laranja Converte+ (#ff5823) */}
-        <div className="absolute inset-auto z-50 h-36 w-[28rem] -translate-y-[-30%] rounded-full bg-[#ff5823]/60 opacity-80 blur-3xl" />
-
-        {/* Lamp Effect Motion */}
+        {/* Ambient Glow principal da luz do studio acendendo */}
         <motion.div
-          initial={{ width: "8rem" }}
-          viewport={{ once: true }}
-          transition={{ ease: "easeInOut", delay: 0.3, duration: 0.8 }}
-          whileInView={{ width: "16rem" }}
-          className="absolute top-0 z-30 h-36 -translate-y-[20%] rounded-full bg-[#ff5823]/60 blur-2xl"
+          initial={{ opacity: 0, scale: 0.7, y: 30 }}
+          animate={{ opacity: 0.85, scale: 1, y: 0 }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          className="absolute inset-auto z-50 h-44 w-[32rem] -translate-y-[-20%] rounded-full bg-[#ff5823]/60 opacity-80 blur-3xl"
         />
 
-        {/* Top Line Motion */}
+        {/* Lamp Light Core Motion acendendo como foco de luz */}
         <motion.div
-          initial={{ width: "15rem" }}
-          viewport={{ once: true }}
-          transition={{ ease: "easeInOut", delay: 0.3, duration: 0.8 }}
-          whileInView={{ width: "30rem" }}
-          className="absolute inset-auto z-50 h-0.5 -translate-y-[-10%] bg-[#ff5823]/60"
+          initial={{ width: "8rem", opacity: 0.2, y: 20 }}
+          animate={{ width: "20rem", opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          className="absolute top-0 z-30 h-40 -translate-y-[15%] rounded-full bg-[#ff5823]/70 blur-2xl"
         />
 
-        {/* Left Gradient Cone */}
+        {/* Linha de luz no topo expandindo */}
         <motion.div
-          initial={{ opacity: 0.5, width: "15rem" }}
-          whileInView={{ opacity: 1, width: "30rem" }}
+          initial={{ width: "10rem", opacity: 0 }}
+          animate={{ width: "34rem", opacity: 1 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
+          className="absolute inset-auto z-50 h-0.5 -translate-y-[-10%] bg-[#ff5823]"
+        />
+
+        {/* Cone Esquerdo de Luz subindo e abrindo */}
+        <motion.div
+          initial={{ opacity: 0, width: "12rem", y: 40 }}
+          animate={{ opacity: 0.95, width: "32rem", y: 0 }}
           transition={{
-            delay: 0.3,
-            duration: 0.8,
-            ease: "easeInOut",
+            delay: 0.2,
+            duration: 1.3,
+            ease: [0.16, 1, 0.3, 1],
           }}
           style={{
             backgroundImage: `conic-gradient(var(--conic-position), var(--tw-gradient-stops))`,
           }}
-          className="absolute inset-auto right-1/2 h-56 overflow-visible w-[30rem] bg-gradient-conic from-[#ff5823]/60 via-transparent to-transparent [--conic-position:from_70deg_at_center_top]"
+          className="absolute inset-auto right-1/2 h-64 overflow-visible w-[32rem] bg-gradient-conic from-[#ff5823]/60 via-transparent to-transparent [--conic-position:from_70deg_at_center_top]"
         >
           <div className="absolute w-[100%] left-0 bg-[#0e1015] h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
           <div className="absolute w-40 h-[100%] left-0 bg-[#0e1015] bottom-0 z-20 [mask-image:linear-gradient(to_right,white,transparent)]" />
         </motion.div>
 
-        {/* Right Gradient Cone */}
+        {/* Cone Direito de Luz subindo e abrindo */}
         <motion.div
-          initial={{ opacity: 0.5, width: "15rem" }}
-          whileInView={{ opacity: 1, width: "30rem" }}
+          initial={{ opacity: 0, width: "12rem", y: 40 }}
+          animate={{ opacity: 0.95, width: "32rem", y: 0 }}
           transition={{
-            delay: 0.3,
-            duration: 0.8,
-            ease: "easeInOut",
+            delay: 0.2,
+            duration: 1.3,
+            ease: [0.16, 1, 0.3, 1],
           }}
           style={{
             backgroundImage: `conic-gradient(var(--conic-position), var(--tw-gradient-stops))`,
           }}
-          className="absolute inset-auto left-1/2 h-56 w-[30rem] bg-gradient-conic from-transparent via-transparent to-[#ff5823]/60 [--conic-position:from_290deg_at_center_top]"
+          className="absolute inset-auto left-1/2 h-64 w-[32rem] bg-gradient-conic from-transparent via-transparent to-[#ff5823]/60 [--conic-position:from_290deg_at_center_top]"
         >
           <div className="absolute w-40 h-[100%] right-0 bg-[#0e1015] bottom-0 z-20 [mask-image:linear-gradient(to_left,white,transparent)]" />
           <div className="absolute w-[100%] right-0 bg-[#0e1015] h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
@@ -77,43 +82,43 @@ export default function HeroSection({ onOpenICP }) {
           {/* Main Hero Copy (Left Column) */}
           <div className="lg:col-span-7 space-y-6 text-left relative z-10">
             
-            {/* Eyebrow Badge */}
+            {/* Eyebrow Badge subindo em sincronia com o acendimento da luz */}
             <motion.div 
-              initial={{ y: 20, opacity: 0 }}
+              initial={{ y: 35, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
               className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-bold uppercase tracking-wider shadow-[0_0_25px_rgba(255,88,35,0.2)]"
             >
               <Sparkles className="w-3.5 h-3.5 text-orange-500 shrink-0" />
               <span>Tráfego pago + branding para marcas que já vendem</span>
             </motion.div>
 
-            {/* Headline com Animação da 21st.dev (Framermotion) */}
+            {/* Headline subindo suavemente acompanhando a iluminação do estúdio */}
             <motion.h1 
-              initial={{ y: 30, opacity: 0 }}
+              initial={{ y: 45, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
               className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12]"
             >
               Clientes chegando todos os dias, <br />
               <span className="text-[#ff5823]">sem depender de indicação.</span>
             </motion.h1>
 
-            {/* Subheadline */}
+            {/* Subheadline subindo em cascata */}
             <motion.p 
-              initial={{ y: 30, opacity: 0 }}
+              initial={{ y: 45, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
               className="text-sm sm:text-base lg:text-lg text-gray-300 font-normal leading-relaxed max-w-2xl"
             >
               Você já tem um bom produto e clientes que confiam em você. A gente estrutura sua presença digital e traz as pessoas certas, de forma previsível, para o seu site e o seu WhatsApp.
             </motion.p>
 
-            {/* Action Buttons */}
+            {/* Action Buttons subindo em cascata */}
             <motion.div 
-              initial={{ y: 30, opacity: 0 }}
+              initial={{ y: 45, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
               className="pt-2 space-y-3"
             >
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
@@ -141,8 +146,13 @@ export default function HeroSection({ onOpenICP }) {
 
           </div>
 
-          {/* Right Column: 3D Orbit Graphic ("A Rodinha com Iluminação 21st.dev") */}
-          <div className="lg:col-span-5 flex items-center justify-center relative py-6 sm:py-10">
+          {/* Right Column: 3D Orbit Graphic ("A Rodinha com Iluminação Studio Light") */}
+          <motion.div 
+            initial={{ scale: 0.88, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+            className="lg:col-span-5 flex items-center justify-center relative py-6 sm:py-10"
+          >
             
             {/* Canvas da Rodinha */}
             <div className="relative w-[340px] h-[340px] sm:w-[400px] sm:h-[400px] lg:w-[440px] lg:h-[440px] flex items-center justify-center select-none scale-[0.92] sm:scale-100">
@@ -190,7 +200,7 @@ export default function HeroSection({ onOpenICP }) {
 
             </div>
 
-          </div>
+          </motion.div>
 
         </div>
 
