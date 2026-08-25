@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Converte+",
   tagline: "Agência de Tráfego Pago e Branding",
   description: "Clientes chegando todos os dias sem depender de indicação. Estruturamos sua presença digital e executamos tráfego de alta conversão.",
-  whatsappNumber: "5515998411520", // Official Converte+ WhatsApp Phone Number
+  whatsappNumber: "5521973403029", // Official Converte+ WhatsApp Phone Number (+55 21 97340-3029)
   
   // Faixa de Prova (Colada ao Hero)
   proofBadges: [
