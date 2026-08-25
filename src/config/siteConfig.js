@@ -93,26 +93,26 @@ export const siteConfig = {
     }
   ],
 
-  // Cases de Sucesso (Substituindo contadores genéricos)
+  // Cases de Sucesso Reais (100% fiéis aos prints dos depoimentos)
   cases: [
     {
-      client: "Clínica & Bem-Estar",
+      client: "Clínica de Estética & Saúde",
       location: "São Paulo · SP",
-      period: "Últimos 90 dias",
-      before: "100% dependente de indicações de pacientes antigos, sem previsibilidade mensal.",
-      result: "+142 novos agendamentos qualificados via WhatsApp com CAC reduzido em 38%.",
-      quote: "Hoje sabemos exatamente quantos pacientes novos vão entrar na agenda a cada semana.",
-      author: "Dra. Camila M.",
+      period: "Resultado em 30 dias",
+      before: "Orçamentos altos em meses anteriores e falta de previsibilidade nos fechamentos.",
+      result: "81 procedimentos fechados no mês com retorno de R$ 103.723,00 (investimento mantido em R$ 3.520,00).",
+      quote: "Já fechamos 81 procedimentos esse mês! Tivemos o retorno de R$ 103.723,00. Não estamos acreditando nesse resultado!",
+      author: "Dra. Célia & Equipe",
       image: "depoimento-converte+.webp"
     },
     {
-      client: "Consultoria B2B",
-      location: "Sorocaba · SP",
-      period: "6 meses de projeto",
-      before: "Investimento solto no Google Ads sem mensuração de ROI ponta a ponta.",
-      result: "R$ 480k em propostas fechadas a partir de campanhas integradas com página de alta conversão.",
-      quote: "A estrutura de autoridade antes do tráfego mudou o nível das reuniões de vendas.",
-      author: "Ricardo V.",
+      client: "E-commerce",
+      location: "Interior de SP",
+      period: "30 dias de projeto",
+      before: "Insegurança com gestores anteriores e gargalos não identificados no time de vendas.",
+      result: "R$ 139.000,00 faturados em 30 dias a partir da estruturação de tráfego e alinhamento comercial.",
+      quote: "Conseguimos faturar 139mil em 30 dias e foi um resultado que eu nunca tive no mês. O seu maior diferencial!",
+      author: "Cliente E-commerce",
       image: "depoimento2-converte+.webp"
     }
   ],
