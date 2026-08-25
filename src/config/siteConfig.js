@@ -102,7 +102,8 @@ export const siteConfig = {
       before: "100% dependente de indicações de pacientes antigos, sem previsibilidade mensal.",
       result: "+142 novos agendamentos qualificados via WhatsApp com CAC reduzido em 38%.",
       quote: "Hoje sabemos exatamente quantos pacientes novos vão entrar na agenda a cada semana.",
-      author: "Dra. Camila M."
+      author: "Dra. Camila M.",
+      image: "depoimento-converte+.webp"
     },
     {
       client: "Consultoria B2B",
@@ -111,7 +112,8 @@ export const siteConfig = {
       before: "Investimento solto no Google Ads sem mensuração de ROI ponta a ponta.",
       result: "R$ 480k em propostas fechadas a partir de campanhas integradas com página de alta conversão.",
       quote: "A estrutura de autoridade antes do tráfego mudou o nível das reuniões de vendas.",
-      author: "Ricardo V."
+      author: "Ricardo V.",
+      image: "depoimento2-converte+.webp"
     }
   ],
 
