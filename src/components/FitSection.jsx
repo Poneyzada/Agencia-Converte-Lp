@@ -22,8 +22,7 @@ export default function FitSection({ onOpenICP }) {
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Para quem é e para quem <br />
-            <span className="text-[#ff5823]">NÃO É a Converte+?</span>
+            Para quem é <span className="text-[#ff5823]">a Converte+?</span>
           </h2>
         </div>
 

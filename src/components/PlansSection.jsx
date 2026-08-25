@@ -4,12 +4,27 @@ import { siteConfig } from '../config/siteConfig';
 
 export default function PlansSection({ onOpenICP }) {
   const plans = siteConfig.plans;
-  const [expandedMobile, setExpandedMobile] = useState({});
 
-  const toggleMobileFeatures = (id) => {
-    setExpandedMobile(prev => ({
+  // Track expanded state per plan. By default, desktop is expanded, mobile is collapsed.
+  // We initialize state or calculate default: undefined means default (open on desktop, closed on mobile).
+  const [toggleState, setToggleState] = useState({});
+
+  const isPlanExpanded = (planId) => {
+    if (toggleState[planId] !== undefined) {
+      return toggleState[planId];
+    }
+    // Default: false on mobile (<768px), true on desktop (>=768px)
+    if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+      return true;
+    }
+    return false;
+  };
+
+  const toggleFeatures = (planId) => {
+    const current = isPlanExpanded(planId);
+    setToggleState(prev => ({
       ...prev,
-      [id]: !prev[id]
+      [planId]: !current
     }));
   };
 
@@ -42,7 +57,10 @@ export default function PlansSection({ onOpenICP }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
           {plans.map((plan) => {
             const isPopular = plan.popular;
-            const isExpanded = expandedMobile[plan.id];
+            const expanded = isPlanExpanded(plan.id);
+
+            // Calculate total count of deliverable items
+            const totalDeliverablesCount = plan.categories.reduce((acc, cat) => acc + (cat.items ? cat.items.length : 0), 0);
 
             return (
               <div
@@ -84,7 +102,7 @@ export default function PlansSection({ onOpenICP }) {
 
                   {/* Ideal For Box */}
                   <div className="p-3.5 rounded-2xl bg-white/5 border border-white/5 space-y-1">
-                    <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block">
+                    <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block font-mono">
                       Ideal para:
                     </span>
                     <span className="text-xs text-gray-200 block font-medium">
@@ -94,7 +112,7 @@ export default function PlansSection({ onOpenICP }) {
 
                   {/* Milestone Box */}
                   <div className="p-3.5 rounded-2xl bg-orange-500/10 border border-orange-500/20 space-y-1">
-                    <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block">
+                    <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block font-mono">
                       Marco de previsibilidade:
                     </span>
                     <span className="text-xs text-white font-semibold block">
@@ -115,41 +133,47 @@ export default function PlansSection({ onOpenICP }) {
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
 
-                  {/* Mobile Collapsible Toggle Button */}
-                  <div className="md:hidden pt-2">
+                  {/* Divisória antes do botão de entregáveis */}
+                  <div className="pt-2 border-t border-white/10">
+                    
+                    {/* Botão de Entregáveis Destaque (Especificação item 03) */}
                     <button
-                      onClick={() => toggleMobileFeatures(plan.id)}
-                      className="w-full py-2.5 px-4 rounded-xl bg-white/5 border border-white/10 text-gray-300 text-xs font-bold flex items-center justify-center gap-1.5 transition-colors"
+                      onClick={() => toggleFeatures(plan.id)}
+                      className="w-full min-h-[44px] py-3 px-4 rounded-2xl bg-orange-500/10 hover:bg-orange-500/20 border border-[#ff5823] text-[#ff5823] text-xs font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md"
                     >
-                      <span>{isExpanded ? 'Ocultar entregáveis ↑' : 'Ver o que inclui ↓'}</span>
-                      {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                      <span>
+                        {expanded ? 'Ocultar detalhes ↑' : `Ver os ${totalDeliverablesCount} entregáveis →`}
+                      </span>
                     </button>
+
                   </div>
 
                   {/* Categorized Features List */}
-                  <div className={`space-y-4 pt-2 ${isExpanded ? 'block' : 'hidden md:block'}`}>
-                    <div className="relative flex py-1 items-center">
-                      <div className="flex-grow border-t border-white/10"></div>
-                      <span className="flex-shrink mx-3 text-[10px] text-gray-400 uppercase font-mono tracking-wider">Entregáveis</span>
-                      <div className="flex-grow border-t border-white/10"></div>
-                    </div>
-
-                    {plan.categories.map((cat, cIdx) => (
-                      <div key={cIdx} className="space-y-2">
-                        <span className="text-[11px] font-bold text-gray-300 uppercase tracking-wider block">
-                          {cat.name}
-                        </span>
-                        <div className="space-y-2">
-                          {cat.items.map((item, iIdx) => (
-                            <div key={iIdx} className="flex items-start gap-2.5 text-xs text-gray-200">
-                              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                              <span className="leading-relaxed">{item}</span>
-                            </div>
-                          ))}
-                        </div>
+                  {expanded && (
+                    <div className="space-y-4 pt-2 animate-in fade-in-50 duration-200">
+                      <div className="relative flex py-1 items-center">
+                        <div className="flex-grow border-t border-white/10"></div>
+                        <span className="flex-shrink mx-3 text-[10px] text-gray-400 uppercase font-mono tracking-wider">Entregáveis</span>
+                        <div className="flex-grow border-t border-white/10"></div>
                       </div>
-                    ))}
-                  </div>
+
+                      {plan.categories.map((cat, cIdx) => (
+                        <div key={cIdx} className="space-y-2">
+                          <span className="text-[11px] font-bold text-gray-300 uppercase tracking-wider block">
+                            {cat.name}
+                          </span>
+                          <div className="space-y-2">
+                            {cat.items.map((item, iIdx) => (
+                              <div key={iIdx} className="flex items-start gap-2.5 text-xs text-gray-200">
+                                <CheckCircle2 className="w-4 h-4 text-[#ff5823] shrink-0 mt-0.5" />
+                                <span className="leading-relaxed">{item}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
                 </div>
 

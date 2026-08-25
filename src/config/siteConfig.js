@@ -27,8 +27,8 @@ export const siteConfig = {
     },
     {
       step: "02",
-      title: "Anúncios no alvo certo",
-      subtitle: "Tráfego pago qualificado",
+      title: "Público no alvo certo",
+      subtitle: "NA FRENTE DE QUEM TEM INTENÇÃO DE COMPRA",
       description: "Colocamos sua marca na frente de quem tem alta intenção de compra. Transforma o 'boca a boca' casual em um fluxo constante de novos contatos.",
       bullets: [
         "Meta Ads & Google Ads configurados no alvo",
@@ -37,9 +37,9 @@ export const siteConfig = {
     },
     {
       step: "03",
-      title: "Presença com autoridade",
-      subtitle: "Sua marca virando referência",
-      description: "Comunicação estratégica, roteiros que prendem atenção e criativos profissionais que posicionam sua empresa como autoridade no seu setor.",
+      title: "Anúncio que converte",
+      subtitle: "CRIATIVO QUE PRENDE E VENDE",
+      description: "Comunicação estratégica, roteiros e criativos profissionais que prendem a atenção nos primeiros segundos e transformam visualização em contato — com a sua marca posicionada como referência no setor.",
       bullets: [
         "Roteiros e criativos que prendem a atenção",
         "Ajuste visual e tom de voz que convencem"
@@ -115,6 +115,27 @@ export const siteConfig = {
     }
   ],
 
+  // Seção Nova: Consultoria de Imagem
+  imageConsulting: {
+    kicker: "DIFERENCIAL CONVERTE+",
+    title: "A sua marca vende mais quando você aparece.",
+    description: "Anúncio com rosto converte mais do que anúncio genérico — mas a maioria dos profissionais trava na hora de gravar. Por isso a consultoria de imagem faz parte do processo: a gente prepara você para aparecer com segurança e naturalidade nos anúncios da sua marca.",
+    pillars: [
+      {
+        title: "Direção de imagem",
+        desc: "Definição de visual, postura e enquadramento coerentes com o posicionamento da marca."
+      },
+      {
+        title: "Preparação para a câmera",
+        desc: "Roteiro na mão, orientação de fala e ritmo. Você não improvisa e não trava."
+      },
+      {
+        title: "Produção dos criativos",
+        desc: "Gravação orientada e edição pronta para rodar em Meta Ads e Google Ads."
+      }
+    ]
+  },
+
   // Planos (Sem preço, alinhados ao método)
   plans: [
     {
@@ -164,7 +185,8 @@ export const siteConfig = {
           items: [
             "Tudo do plano Base",
             "Ajuste da identidade visual e comunicação",
-            "Direção de conteúdo, foto e vídeo"
+            "Direção de conteúdo, foto e vídeo",
+            "Consultoria de imagem para gravação dos anúncios"
           ]
         },
         {
@@ -199,7 +221,8 @@ export const siteConfig = {
           items: [
             "Tudo do plano Autoridade",
             "Posicionamento de marca de ponta a ponta",
-            "Diretrizes de marca para todos os canais"
+            "Diretrizes de marca para todos os canais",
+            "Consultoria de imagem contínua e direção de produção"
           ]
         },
         {
@@ -278,8 +301,8 @@ export const siteConfig = {
       answer: "Não trabalhamos com contratos engessados de longo prazo com multas abusivas. Recomendamos o ciclo de 90 dias para consolidação técnica, mas nossa parceria se mantém unicamente pela geração contínua de valor e clientes reais."
     },
     {
-      question: "Como funciona o diagnóstico gratuito?",
-      answer: "Clicando em 'Fazer diagnóstico grátis', você responde a 3 etapas simples sobre o seu momento. Nossa equipe de fundadores analisa sua presença digital e entra em contato via WhatsApp com um mapa prático dos seus principais gargalos e oportunidades."
+      question: "Como funciona a garantia de atendimento direto com fundadores?",
+      answer: "Para manter a qualidade e o acompanhamento próximo de cada conta, limitamos rigidamente a entrada de novos clientes por mês. Você terá canal direto com os fundadores João Paulo e Isabela Laud."
     }
   ]
 };
