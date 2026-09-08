@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: "Agência de Tráfego Pago e Branding",
   description: "Clientes chegando todos os dias sem depender de indicação. Estruturamos sua presença digital e executamos tráfego de alta conversão.",
   whatsappNumber: "5521973403029", // Official Converte+ WhatsApp Phone Number (+55 21 97340-3029)
-  googleSheetWebhookUrl: "", // URL do Webhook do Google Apps Script para sincronização automática
+  googleSheetWebhookUrl: "https://script.google.com/macros/s/AKfycbxyE0PbIuvfRPeGqVkTVZl_uo84mUcj0a0SyvQBA5DlRdTnkKx7w9JSb1XCVp72FlhZ/exec", // URL do Webhook do Google Apps Script da Converte+
   
   // Faixa de Prova (Colada ao Hero)
   proofBadges: [
