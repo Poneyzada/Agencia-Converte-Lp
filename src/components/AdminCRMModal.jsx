@@ -29,7 +29,10 @@ import {
   Code,
   Link2,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  RefreshCw,
+  LogOut,
+  CloudDownload
 } from 'lucide-react';
 import { siteConfig } from '../config/siteConfig';
 
@@ -37,7 +40,10 @@ export default function AdminCRMModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   const [password, setPassword] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // Persists authenticated session in browser so page refresh doesn't prompt for password repeatedly
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem('converte_crm_session') === 'true';
+  });
   const [authError, setAuthError] = useState('');
   const [leads, setLeads] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -45,6 +51,9 @@ export default function AdminCRMModal({ isOpen, onClose }) {
   const [selectedLead, setSelectedLead] = useState(null);
   const [copiedSuccess, setCopiedSuccess] = useState(false);
   const [leadNoteInput, setLeadNoteInput] = useState('');
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isSyncingSheets, setIsSyncingSheets] = useState(false);
+  const [syncMessage, setSyncMessage] = useState('');
   
   // Google Sheets Webhook Integration State
   const [webhookUrl, setWebhookUrl] = useState(() => {
@@ -77,9 +86,76 @@ export default function AdminCRMModal({ isOpen, onClose }) {
     e.preventDefault();
     if (VALID_PASSWORDS.includes(password.trim())) {
       setIsAuthenticated(true);
+      localStorage.setItem('converte_crm_session', 'true');
       setAuthError('');
     } else {
       setAuthError('Senha incorreta. Acesso negado.');
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('converte_crm_session');
+    setIsAuthenticated(false);
+    setPassword('');
+    setAuthError('');
+  };
+
+  const handleRefresh = () => {
+    setIsRefreshing(true);
+    try {
+      const stored = JSON.parse(localStorage.getItem('converte_leads_db') || '[]');
+      setLeads(stored);
+      setSyncMessage('Leads atualizados com sucesso ✓');
+      setTimeout(() => setSyncMessage(''), 2500);
+    } catch (e) {
+      console.error(e);
+    }
+    setTimeout(() => setIsRefreshing(false), 400);
+  };
+
+  const handleSyncFromGoogleSheets = async () => {
+    const url = webhookUrl || siteConfig.googleSheetWebhookUrl;
+    if (!url || !url.startsWith('http')) {
+      alert('Configure a URL do Webhook do Google Apps Script primeiro.');
+      return;
+    }
+
+    setIsSyncingSheets(true);
+    try {
+      const res = await fetch(url + '?action=get_leads');
+      if (res.ok) {
+        const cloudLeads = await res.json();
+        if (Array.isArray(cloudLeads) && cloudLeads.length > 0) {
+          const localStored = JSON.parse(localStorage.getItem('converte_leads_db') || '[]');
+          const localMap = new Map(localStored.map(l => [l.id, l]));
+          
+          const merged = cloudLeads.map(cl => {
+            const existing = localMap.get(cl.id);
+            return existing ? { ...cl, status: existing.status || cl.status, note: existing.note || '' } : cl;
+          });
+
+          localStored.forEach(l => {
+            if (!merged.some(m => m.id === l.id)) {
+              merged.push(l);
+            }
+          });
+
+          setLeads(merged);
+          localStorage.setItem('converte_leads_db', JSON.stringify(merged));
+          setSyncMessage(`Sincronizados ${cloudLeads.length} leads da Planilha Google ✓`);
+          setTimeout(() => setSyncMessage(''), 4000);
+        } else {
+          setSyncMessage('Planilha verificada.');
+          setTimeout(() => setSyncMessage(''), 3000);
+        }
+      } else {
+        handleRefresh();
+      }
+    } catch (err) {
+      console.warn('Sync notice:', err);
+      handleRefresh();
+    } finally {
+      setIsSyncingSheets(false);
     }
   };
 
@@ -312,7 +388,7 @@ export default function AdminCRMModal({ isOpen, onClose }) {
       <div className="relative w-full max-w-6xl bg-[#0a0f1f] border border-white/15 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         
         {/* Modal Header */}
-        <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-[#060914]">
+        <div className="px-4 sm:px-6 py-4 border-b border-white/10 flex flex-wrap items-center justify-between gap-3 bg-[#060914]">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-orange-500 to-amber-500 p-[1px] shadow-lg shadow-orange-500/20">
               <div className="w-full h-full bg-[#0e1529] rounded-[15px] flex items-center justify-center">
@@ -327,21 +403,68 @@ export default function AdminCRMModal({ isOpen, onClose }) {
                 </span>
               </h2>
               <p className="text-[11px] text-gray-400">
-                Gestão estratégica de leads, diagnósticos e exportação de dados
+                Gestão estratégica de leads, diagnósticos e sincronização em tempo real
               </p>
             </div>
           </div>
 
-          <button
-            onClick={onClose}
-            className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors cursor-pointer"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-2">
+            {isAuthenticated && (
+              <>
+                {/* Botão de Atualizar Leads */}
+                <button
+                  onClick={handleRefresh}
+                  disabled={isRefreshing}
+                  className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5"
+                  title="Atualizar lista de leads"
+                >
+                  <RefreshCw className={`w-3.5 h-3.5 text-orange-400 ${isRefreshing ? 'animate-spin' : ''}`} />
+                  <span className="hidden sm:inline">Atualizar</span>
+                </button>
+
+                {/* Botão de Sincronizar com Planilha */}
+                <button
+                  onClick={handleSyncFromGoogleSheets}
+                  disabled={isSyncingSheets}
+                  className="px-3 py-1.5 rounded-xl bg-orange-500/10 hover:bg-orange-500/20 border border-orange-500/30 text-orange-400 text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5"
+                  title="Puxar dados da Planilha Google"
+                >
+                  <CloudDownload className={`w-3.5 h-3.5 ${isSyncingSheets ? 'animate-bounce' : ''}`} />
+                  <span className="hidden sm:inline">Puxar da Planilha</span>
+                </button>
+
+                {/* Botão de Sair (Logout) */}
+                <button
+                  onClick={handleLogout}
+                  className="px-3 py-1.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5"
+                  title="Sair do Painel CRM"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Sair</span>
+                </button>
+              </>
+            )}
+
+            <button
+              onClick={onClose}
+              className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors cursor-pointer"
+              title="Fechar painel"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* CONTENT BODY */}
         <div className="p-6 overflow-y-auto flex-grow space-y-6">
+          
+          {/* Notification Toast */}
+          {syncMessage && (
+            <div className="p-3 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold flex items-center gap-2 animate-in fade-in duration-200">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <span>{syncMessage}</span>
+            </div>
+          )}
           
           {/* PASSWORD AUTHENTICATION SCREEN */}
           {!isAuthenticated ? (
