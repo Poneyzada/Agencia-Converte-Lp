@@ -27,6 +27,32 @@ export default function LearnSection() {
         serviceGoal: 'Aprender e executar por conta'
       };
       localStorage.setItem('converte_leads_db', JSON.stringify([newLead, ...existing]));
+
+      // Disparo automático para Planilha do Google via Webhook
+      const webhookUrl = siteConfig.googleSheetWebhookUrl || localStorage.getItem('converte_google_webhook_url');
+      if (webhookUrl && webhookUrl.startsWith('http')) {
+        fetch(webhookUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            data_hora: newLead.date,
+            id: newLead.id,
+            origem_tag: 'newsletter_conteudo',
+            nome: 'Inscrição Conteúdo',
+            telefone: '-',
+            email: email,
+            momento: 'Interesse em Material / Newsletter',
+            segmento: '-',
+            verba_anuncios: '-',
+            site_instagram: 'Newsletter',
+            utm_source: 'site_lp',
+            utm_medium: '',
+            utm_campaign: ''
+          })
+        }).catch(err => console.warn('Google Sheet Webhook Info:', err));
+      }
+
       setSubmitted(true);
     } catch (err) {
       console.error(err);

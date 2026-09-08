@@ -23,8 +23,15 @@ import {
   ExternalLink,
   Sparkles,
   Layers,
-  Save
+  Save,
+  Globe,
+  Send,
+  Code,
+  Link2,
+  CheckCircle2,
+  AlertCircle
 } from 'lucide-react';
+import { siteConfig } from '../config/siteConfig';
 
 export default function AdminCRMModal({ isOpen, onClose }) {
   if (!isOpen) return null;
@@ -38,6 +45,15 @@ export default function AdminCRMModal({ isOpen, onClose }) {
   const [selectedLead, setSelectedLead] = useState(null);
   const [copiedSuccess, setCopiedSuccess] = useState(false);
   const [leadNoteInput, setLeadNoteInput] = useState('');
+  
+  // Google Sheets Webhook Integration State
+  const [webhookUrl, setWebhookUrl] = useState(() => {
+    return siteConfig.googleSheetWebhookUrl || localStorage.getItem('converte_google_webhook_url') || '';
+  });
+  const [showWebhookBox, setShowWebhookBox] = useState(false);
+  const [webhookSaved, setWebhookSaved] = useState(false);
+  const [testSent, setTestSent] = useState(false);
+  const [scriptCopied, setScriptCopied] = useState(false);
 
   // Official Admin Passwords for agency owners
   const VALID_PASSWORDS = ['converteMAIS123', 'coverteMAIS123'];
@@ -167,6 +183,101 @@ export default function AdminCRMModal({ isOpen, onClose }) {
     navigator.clipboard.writeText(textToCopy);
     setCopiedSuccess(true);
     setTimeout(() => setCopiedSuccess(false), 3000);
+  };
+
+  const handleSaveWebhook = () => {
+    localStorage.setItem('converte_google_webhook_url', webhookUrl.trim());
+    setWebhookSaved(true);
+    setTimeout(() => setWebhookSaved(false), 3000);
+  };
+
+  const handleTestWebhook = async () => {
+    if (!webhookUrl || !webhookUrl.startsWith('http')) {
+      alert('Insira a URL do Webhook do Google Apps Script primeiro.');
+      return;
+    }
+    try {
+      await fetch(webhookUrl.trim(), {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          data_hora: new Date().toLocaleString('pt-BR'),
+          id: 'TEST-' + Math.floor(1000 + Math.random() * 9000),
+          origem_tag: 'teste_conexao',
+          nome: 'Lead de Teste Converte+',
+          telefone: '(21) 97340-3029',
+          email: 'teste@converteplus.com.br',
+          momento: 'Validação de Conexão Automática',
+          segmento: 'Agência Digital',
+          verba_anuncios: 'R$ 5.000 / mês',
+          site_instagram: '@converteplus',
+          utm_source: 'teste_crm',
+          utm_medium: 'painel_admin',
+          utm_campaign: 'sincronizacao_sheets'
+        })
+      });
+      setTestSent(true);
+      setTimeout(() => setTestSent(false), 4000);
+      alert('✓ Teste enviado com sucesso! Verifique a nova linha na sua Planilha do Google.');
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao disparar teste: ' + err.message);
+    }
+  };
+
+  const handleCopyAppsScriptCode = () => {
+    const code = `function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = JSON.parse(e.postData.contents);
+    
+    // Se a primeira linha estiver vazia, cria os cabeçalhos com estilo Converte+
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow([
+        "Data/Hora",
+        "ID do Lead",
+        "Origem",
+        "Nome",
+        "WhatsApp",
+        "E-mail",
+        "Momento Atual",
+        "Segmento",
+        "Verba em Anúncios",
+        "Site / Instagram",
+        "UTM Source",
+        "UTM Medium",
+        "UTM Campaign"
+      ]);
+      sheet.getRange(1, 1, 1, 13).setFontWeight("bold").setBackground("#ff5823").setFontColor("#ffffff");
+    }
+    
+    sheet.appendRow([
+      data.data_hora || new Date().toLocaleString("pt-BR"),
+      data.id || "-",
+      data.origem_tag || "diagnostico_lp",
+      data.nome || "-",
+      data.telefone || "-",
+      data.email || "-",
+      data.momento || "-",
+      data.segmento || "-",
+      data.verba_anuncios || "-",
+      data.site_instagram || "-",
+      data.utm_source || "direto",
+      data.utm_medium || "",
+      data.utm_campaign || ""
+    ]);
+    
+    return ContentService.createTextOutput(JSON.stringify({ status: "success" }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({ status: "error", message: error.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}`;
+    navigator.clipboard.writeText(code);
+    setScriptCopied(true);
+    setTimeout(() => setScriptCopied(false), 3000);
   };
 
   const filteredLeads = leads.filter(l => {
@@ -339,6 +450,89 @@ export default function AdminCRMModal({ isOpen, onClose }) {
                   </div>
                 </div>
 
+              </div>
+
+              {/* Real-time Google Sheets Automation Card */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#0d1428] via-[#101b36] to-[#0d1428] border border-orange-500/40 space-y-3 shadow-xl">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400 shrink-0">
+                      <Globe className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-xs sm:text-sm font-extrabold text-white flex items-center gap-2">
+                        <span>Sincronização Automática com Google Sheets</span>
+                        {webhookUrl ? (
+                          <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-mono font-bold flex items-center gap-1 border border-emerald-500/30">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                            CONECTADO
+                          </span>
+                        ) : (
+                          <span className="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 text-[10px] font-mono font-bold flex items-center gap-1 border border-amber-500/30">
+                            NÃO CONFIGURADO
+                          </span>
+                        )}
+                      </h4>
+                      <p className="text-[11px] text-gray-300">
+                        Cada novo lead da landing page e do Instagram é inserido automaticamente como uma nova linha na sua planilha.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setShowWebhookBox(!showWebhookBox)}
+                      className="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white font-bold text-xs transition-colors cursor-pointer flex items-center gap-1.5"
+                    >
+                      <Link2 className="w-3.5 h-3.5 text-orange-400" />
+                      <span>{showWebhookBox ? 'Ocultar Configuração' : 'Configurar Planilha'}</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Expandable Webhook Configuration Details */}
+                {showWebhookBox && (
+                  <div className="pt-3 border-t border-white/10 space-y-3 animate-in fade-in-50 duration-200">
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <input
+                        type="url"
+                        placeholder="Cole aqui a URL do seu Webhook (https://script.google.com/macros/s/.../exec)"
+                        value={webhookUrl}
+                        onChange={(e) => setWebhookUrl(e.target.value)}
+                        className="flex-grow px-3.5 py-2.5 rounded-xl bg-[#060914] border border-white/20 text-white text-xs focus:outline-none focus:border-orange-500 font-mono"
+                      />
+                      <button
+                        onClick={handleSaveWebhook}
+                        className="px-4 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs transition-colors cursor-pointer flex items-center justify-center gap-1.5 shadow"
+                      >
+                        <Save className="w-3.5 h-3.5" />
+                        <span>{webhookSaved ? 'Salvo ✓' : 'Salvar URL'}</span>
+                      </button>
+                      <button
+                        onClick={handleTestWebhook}
+                        className="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-xs transition-colors cursor-pointer flex items-center justify-center gap-1.5 shadow"
+                      >
+                        <Send className="w-3.5 h-3.5" />
+                        <span>{testSent ? 'Enviado ✓' : 'Testar Conexão'}</span>
+                      </button>
+                    </div>
+
+                    <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-[11px] text-gray-400">
+                      <div className="flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                        <span>Sem mensalidades ou ferramentas pagas adicionais (100% nativo no Google).</span>
+                      </div>
+
+                      <button
+                        onClick={handleCopyAppsScriptCode}
+                        className="text-orange-400 hover:text-orange-300 font-bold flex items-center gap-1 cursor-pointer bg-white/5 px-2.5 py-1 rounded-lg border border-white/10"
+                      >
+                        <Code className="w-3.5 h-3.5" />
+                        <span>{scriptCopied ? 'Código Copiado! ✓' : 'Copiar Código do Google Apps Script'}</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Filters & Actions Bar */}

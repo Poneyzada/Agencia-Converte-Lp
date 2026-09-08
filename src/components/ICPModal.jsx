@@ -124,6 +124,31 @@ export default function ICPModal({ isOpen, onClose, whatsappNumber }) {
         utms: utms
       };
       localStorage.setItem('converte_leads_db', JSON.stringify([newLead, ...existing]));
+
+      // Disparo automático para Planilha do Google via Webhook
+      const webhookUrl = siteConfig.googleSheetWebhookUrl || localStorage.getItem('converte_google_webhook_url');
+      if (webhookUrl && webhookUrl.startsWith('http')) {
+        fetch(webhookUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            data_hora: newLead.date,
+            id: newLead.id,
+            origem_tag: 'diagnostico_lp',
+            nome: newLead.nome,
+            telefone: newLead.telefone,
+            email: newLead.email,
+            momento: newLead.revenue,
+            segmento: newLead.segment,
+            verba_anuncios: newLead.budget,
+            site_instagram: newLead.source,
+            utm_source: utms?.utm_source || 'direto',
+            utm_medium: utms?.utm_medium || '',
+            utm_campaign: utms?.utm_campaign || ''
+          })
+        }).catch(err => console.warn('Google Sheet Webhook Info:', err));
+      }
     } catch (e) {
       console.error('Error saving lead:', e);
     }
